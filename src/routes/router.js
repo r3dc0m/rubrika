@@ -1,17 +1,12 @@
-import { Router } from "express";
+import {Router} from "express";
+import apiRouter from "./api/apiRouter.js";
+import viewRouter from "./view/viewRouter.js";
+
 
 const router = Router();
 
-router.get("/", (req, res) => {
-    res.status(501).send(`
-    <h1>Raíz del router</h1>
-    `)
-});
 
-router.get("/:id", (req, res) => {
-    const id = req.params.id;
-    res.send(`ID: ${id}`);
-});
+//router.use("/",viewRouter);
+//router.use("/api",apiRouter);
 
-
-export default router
+export default router;
