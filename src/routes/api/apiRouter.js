@@ -4,5 +4,4 @@ import { Router } from "express";
 
 const router = Router();
 
-//router.use("/rides", rideRouter);
 export default router;

@@ -1,0 +1,32 @@
+services:
+
+  db:
+    image: postgres:latest
+    container_name: rubrika_postgres
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - ${DB_PORT}:5432
+    restart: unless-stopped
+    networks:
+      - rubrika-net
+    volumes:
+      - ./db/data:/var/lib/postgresql
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: rubrika_pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PW}
+    ports:
+      - 8080:80
+    restart: unless-stopped
+    networks:
+      - rubrika-net
+
+networks:
+  rubrika-net:
+    driver: bridge

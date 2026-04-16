@@ -1,4 +1,4 @@
-{
+export const data = {
   "users": [
     {"user_id": 1, "name": "Profesor Uno", "password": "prof123", "role": "profesor"},
     {"user_id": 2, "name": "Alumno 1", "password": "alumno1", "role": "alumno"},
