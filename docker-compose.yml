@@ -13,19 +13,8 @@ services:
     networks:
       - rubrika-net
     volumes:
-      - ./db/data:/var/lib/postgresql
+      - ./db/data:/var/lib/postgresql/18/docker
 
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: rubrika_pgadmin
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
-      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PW}
-    ports:
-      - 8080:80
-    restart: unless-stopped
-    networks:
-      - rubrika-net
 
 networks:
   rubrika-net:
