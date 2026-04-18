@@ -24,6 +24,9 @@ services:
     restart: unless-stopped
     networks:
       - rubrika-net
+    volumes:
+      - ./db/data:/var/lib/postgresql/18/docker
+
 
 networks:
   rubrika-net:

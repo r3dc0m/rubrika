@@ -18,6 +18,7 @@ app.get("/",(req,res)=>{
 
 checkDB();
 syncDB();
+//syncDB();
 app.listen(PORT,()=>{
     console.log(`Servidor en marcha en puerto ${PORT}`);
 })

@@ -139,3 +139,7 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 db/data
+
+notes
+requisitos.md
+package-lock.json

@@ -1,12 +1,11 @@
 import {Router} from "express";
-import apiRouter from "./api/apiRouter.js";
-import viewRouter from "./view/viewRouter.js";
+import appRouter from "./api/appRouter.js";
+import routerUser from "./api/routerUser.js";
 
 
 const router = Router();
 
-
-//router.use("/",viewRouter);
-//router.use("/api",apiRouter);
+router.use("/api",appRouter); //para modelo de claves foraneas. no usar de momento!
+router.use("/api",routerUser);
 
 export default router;
