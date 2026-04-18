@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-import { data } from "../../data/data.js";
-
-=======
 import { DataTypes, Sequelize } from "sequelize";
 import sequelize from "../config/db.js";
 
@@ -11,4 +7,4 @@ const query = "SELECT c.table_name, c.column_name, c.data_type, c.udt_name, c.is
 const appModel = await sequelize.query(query);
 
 export default appModel;
->>>>>>> Stashed changes
+
