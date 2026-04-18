@@ -5,6 +5,8 @@ import { checkDB,syncDB } from "./config/db.js";
 
 //-----Montse-----------------------
 import tasksRouter from "./routes/api/tasksRouter.js";
+import taskCriteriaRouter from "./routes/api/taskCriteriaRouter.js";
+import userProjectsRouter from "./routes/api/userProjectsRouter.js";
 //----------------------------
 
 dotenv.config();
@@ -19,6 +21,8 @@ app.use("/",router);
 
 //-----Montse-----------------------
 app.use("/api/tasks", tasksRouter);
+app.use("/api/task-criteria", taskCriteriaRouter);
+app.use("/api/user-projects", userProjectsRouter);
 //----------------------------
 
 app.get("/",(req,res)=>{

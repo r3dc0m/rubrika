@@ -1,4 +1,4 @@
-import { DataTypes, Sequelize } from "sequelize";
+import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
 
 const tasksModel = sequelize.define("tasks", {
@@ -25,7 +25,8 @@ const tasksModel = sequelize.define("tasks", {
     },
     eval_available: {
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        allowNull: false,
+        defaultValue: false
     }
 },
     {
