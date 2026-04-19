@@ -1,11 +1,8 @@
-import {Router} from "express";
-import appRouter from "./api/appRouter.js";
-import routerUser from "./api/routerUser.js";
-
+import { Router } from "express";
+import apiRouter from "./api/apiRouter.js";
 
 const router = Router();
 
-router.use("/api",appRouter); //para modelo de claves foraneas. no usar de momento!
-router.use("/api",routerUser);
+router.use("/api", apiRouter);
 
 export default router;

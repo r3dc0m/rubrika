@@ -16,4 +16,4 @@ routerUser.put("/:id",userController.updateRide);
 routerUser.patch("/:id/status",userController.setStatus);
 
 routerUser.delete("/:id",userController.deleteRide);
-
+*/
