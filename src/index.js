@@ -37,4 +37,9 @@ async function startServer() {
 }
 
 
-startServer();
+checkDB();
+syncDB();
+app.listen(PORT,()=>{
+    console.log(`Servidor en marcha en puerto ${PORT}`);
+})
+
