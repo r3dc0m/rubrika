@@ -2,11 +2,11 @@ import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
 
 const evaluationCriteriaModel = sequelize.define("evaluations_criteria", {
-    evaluations_evaluation_id: {
+    evaluations_id: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    criteria_criteria_id: {
+    criteria_id: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
