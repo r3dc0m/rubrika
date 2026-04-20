@@ -2,35 +2,28 @@ import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
 
 const evaluationModel = sequelize.define("evaluations", {
-    evaluation_id: {
+    
+    user_id: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    user_id_REVIEWING: {
-        type: DataTypes.INTEGER,
-        allowNull: true
-    },
-    group_id_REVIEWED: {
-        type: DataTypes.INTEGER,
-        allowNull: true
-    },
-    task_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true
-    },
-    marks: {
-        type: DataTypes.FLOAT,
         allowNull: true
     },
     general_comment: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING(89),
         allowNull: true
     },
     when_created: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
-    }
+    },
+    project_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    evaluation_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
 }, {
     tableName: 'evaluations',
     timestamps: false

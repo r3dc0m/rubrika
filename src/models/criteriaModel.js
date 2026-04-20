@@ -7,35 +7,14 @@ const criteriaModel = sequelize.define("criteria", {
         primaryKey: true,
         autoIncrement: true
     },
-    task_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      
-    },
-    title: {
-        type: DataTypes.STRING(100),
-        allowNull: false
-    },
-    type: {
-        type: DataTypes.STRING(20),
-        allowNull: false
-    },
-    options: {
-        type: DataTypes.JSONB,
-        allowNull: true
-    },
-    max_score: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
-    weight: {
-        type: DataTypes.INTEGER,
+    criteria_name: {
+        type: DataTypes.STRING(144),
         allowNull: false,
-        defaultValue: 1
+        defaultValue: 'Criterio vacío'
     }
 }, {
-    tableName: 'criteria', 
-    timestamps: false      
+    tableName: 'criteria',
+    timestamps: false
 });
 
 export default criteriaModel;
