@@ -3,6 +3,12 @@ import dotenv from "dotenv";
 import router from "./routes/router.js";
 import { checkDB, syncDB } from "./config/db.js";
 
+//-----Montse-----------------------
+import tasksRouter from "./routes/api/tasksRouter.js";
+import taskCriteriaRouter from "./routes/api/taskCriteriaRouter.js";
+import userProjectsRouter from "./routes/api/userProjectsRouter.js";
+//----------------------------
+
 dotenv.config();
 
 const PORT = process.env.PORT;
@@ -17,13 +23,18 @@ app.get("/", (req, res) => {
     res.send("Rubrika API funcionando");
 });
 
-// Primero conectamos la BD, luego arrancamos el servidor
+
+app.use("/api/tasks", tasksRouter);
+app.use("/api/task-criteria", taskCriteriaRouter);
+app.use("/api/user-projects", userProjectsRouter);
+
 async function startServer() {
     await checkDB();
-    await syncDB();
+
     app.listen(PORT, () => {
         console.log(`Servidor en marcha en puerto ${PORT}`);
     });
 }
+
 
 startServer();
