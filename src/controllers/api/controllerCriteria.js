@@ -1,4 +1,4 @@
-import criteriaModel from "../../models/criteriaModel.js";
+import criteriaModel from "../../models/modelCriteria.js";
 
 async function getAllCriteria(req, res) {
     try {

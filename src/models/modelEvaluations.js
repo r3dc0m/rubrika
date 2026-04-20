@@ -7,21 +7,13 @@ const evaluationModel = sequelize.define("evaluations", {
         primaryKey: true,
         autoIncrement: true
     },
-    user_id_REVIEWING: {
+    user_id: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: false
     },
-    group_id_REVIEWED: {
+    project_id: {
         type: DataTypes.INTEGER,
-        allowNull: true
-    },
-    task_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true
-    },
-    marks: {
-        type: DataTypes.FLOAT,
-        allowNull: true
+        allowNull: false
     },
     general_comment: {
         type: DataTypes.TEXT,

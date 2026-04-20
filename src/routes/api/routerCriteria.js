@@ -1,5 +1,5 @@
 import { Router } from "express";
-import criteriaController from "../../controllers/api/criteriaController.js";
+import criteriaController from "../../controllers/api/controllerCriteria.js";
 
 const routerCriteria = Router();
 

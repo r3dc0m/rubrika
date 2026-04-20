@@ -1,4 +1,4 @@
-import tasksModel from "../../models/tasksModel.js";
+import tasksModel from "../../models/modelTasks.js";
 
 function getParsedId(id) {
     const idNum = parseInt(id);

@@ -1,4 +1,4 @@
-import userProjectsModel from "../../models/userProjectsModel.js";
+import userProjectsModel from "../../models/modelUserProjects.js";
 
 async function getAllUserProjects(req, res) {
 
