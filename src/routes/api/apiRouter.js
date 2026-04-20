@@ -1,17 +1,14 @@
 import { Router } from "express";
 
-import appRouter from "./api/appRouter.js";
-import routerUser from "./api/routerUser.js";
-import routerProject from "./api/routerProject.js";
+import routerUser from "./routerUser.js";
+import routerProject from "./routerProject.js";
 import routerCriteria from "./routerCriteria.js";
 import routerEvaluation from "./routerEvaluation.js";
 
 const router = Router();
 
-router.use("/api", appRouter);
-router.use("/api", routerUser);
-router.use("/api", routerProject);
 router.use("/user", routerUser);
+router.use("/project", routerProject);
 router.use("/criteria", routerCriteria);
 router.use("/evaluations", routerEvaluation);
 
