@@ -11,7 +11,7 @@ import userProjectsRouter from "./routes/api/userProjectsRouter.js";
 
 dotenv.config();
 
-const PORT = process.env.PORT;
+const PORT = process.env.APP_PORT;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
