@@ -12,11 +12,11 @@ const projectModel = sequelize.define("projects", {
         allowNull: false
     },
     project_name: {
-        type: DataTypes.VARCHAR(34),
+        type: DataTypes.CHAR(34),
         allowNull: false
     },
     repo_link: {
-        type: DataTypes.VARCHAR(55),
+        type: DataTypes.CHAR(55),
         allowNull: true
     }
 }, {
