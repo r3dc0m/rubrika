@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
 
 const evaluationCriteriaModel = sequelize.define("evaluations_criteria", {
-    evaluations_id: {
+    evaluation_id: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
