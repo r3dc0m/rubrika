@@ -5,8 +5,6 @@ import { checkDB, syncDB } from "./config/db.js";
 import "./models/associations.js";
 
 dotenv.config();
-
-const PORT = process.env.APP_PORT;
 const app = express();
 
 app.set('view engine', 'pug'); //engine PUG o EJS
@@ -18,9 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.render("layout", {
-    title: "Rubrika",
-    apiBase: "/api"
+  res.render('dashboard', { 
+    title: 'Rubrika',
+    apiBase: '/api'
   });
 });
 

@@ -20,6 +20,4 @@ router.use("/tasks", routerTasks);
 router.use("/user", routerUser);
 router.use("/user-projects", routerUserProjects);
 
-
-
 export default router;
