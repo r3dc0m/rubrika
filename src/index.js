@@ -1,16 +1,15 @@
 import express from "express";
 import dotenv from "dotenv";
 import apiRouter from "./routes/apiRouter.js";
-import viewRouter from "./routes/viewRouter.js";
 import { checkDB, syncDB } from "./config/db.js";
 import "./models/associations.js";
 
 dotenv.config();
 <<<<<<< HEAD
-=======
 
 const PORT = process.env.APP_PORT;
->>>>>>> 845122e (feat/routes: arreglar APP_PORT y actualizar modelos y controladores)
+=======
+>>>>>>> 1627ab8 (0420.1646)
 const app = express();
 
 app.set('view engine', 'pug'); //engine PUG o EJS
@@ -29,14 +28,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", apiRouter);
-app.use("/", viewRouter);
 
-async function startServer() {
-    await checkDB();
-    await syncDB();
-    app.listen(3000, () => {
-        console.log('Servidor Rubrika en marcha en puerto 3000');
-    });
-}
-
-startServer();
+checkDB();
+syncDB();
+app.listen(3000, () => console.log('rubrika en puerto 3000'));

@@ -28,6 +28,22 @@ block content
             )
             span.field-error(role='alert') #{errors && errors.name ? errors.name : ''}
 
+        //Apellido
+        .form-group
+        label(for="apellido") Primer apellido
+            span.required *
+        input#apellido(
+            type="text", 
+            name="apellido", 
+            required, 
+            placeholder="Apellido Apellido",
+            value=formData && formData.apellido ? formData.apellido : ''
+            required 
+            min-lenght='2'
+            max-lenght='80'
+        )
+        span.field-error(role='alert') #{errors && errors.apellido ? errors.apellido : ''}
+
         //Correo
         .form-group
           label(for='email') Correo electrónico
@@ -106,3 +122,5 @@ block content
 
         // Botón de cancelar
         button.btn.butn-primary(type='submit') Cancelar
+
+        DEJAR SOLO NOMBRE, EMAIL Y PASSWORD DOS VECES 
