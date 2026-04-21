@@ -11,8 +11,12 @@ const userModel = sequelize.define("users", {
         type: DataTypes.STRING(55),
         allowNull: false
     },
-    password: {
+    email: {
         type: DataTypes.STRING(55),
+        allowNull: false
+    },
+    password: {
+        type: DataTypes.STRING(144),
         allowNull: false
     },
     role: {
