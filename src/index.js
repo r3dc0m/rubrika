@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import apiRouter from "./routes/apiRouter.js";
+import viewRouter from "./routes/viewRouter.js";
 import { checkDB, syncDB } from "./config/db.js";
 import "./models/associations.js";
 
@@ -23,7 +24,14 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", apiRouter);
+app.use("/", viewRouter);
 
-checkDB();
-syncDB();
-app.listen(3000, () => console.log('rubrika en puerto 3000'));
+async function startServer() {
+    await checkDB();
+    await syncDB();
+    app.listen(3000, () => {
+        console.log('Servidor Rubrika en marcha en puerto 3000');
+    });
+}
+
+startServer();

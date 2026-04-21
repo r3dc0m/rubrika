@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+    h1 Usuario: #{user.name}
+    
+    p ID: #{user.user_id}
+    p Email: #{user.email}
+    p Rol: #{user.role}
+    
+    a(href="/users") ← Volver a la lista
