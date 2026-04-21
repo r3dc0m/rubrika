@@ -1,4 +1,4 @@
-import userModel from "../../models/userModel.js";
+import userModel from "../../models/modelUsers.js";
 //import { IDNotNumberError } from "../../utils/errors/genericErrors.js";
 
 

@@ -1,24 +1,29 @@
 import express from "express";
 import dotenv from "dotenv";
-import router from "./routes/router.js";
-import { checkDB,syncDB } from "./config/db.js";
+import apiRouter from "./routes/apiRouter.js";
+import { checkDB, syncDB } from "./config/db.js";
+import "./models/associations.js";
 
 dotenv.config();
-const PORT = process.env.APP_PORT;
 const app = express();
 
-app.use(express.urlencoded());
+app.set('view engine', 'pug'); //engine PUG o EJS
+app.set('views', './src/views'); //donde están los PUG
+
+app.use(express.static('public'));
+
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.render("layout", {
+    title: "Rubrika",
+    apiBase: "/api"
+  });
+});
 
-app.use("/",router);
-app.get("/",(req,res)=>{
-    res.send("hello world");
-})
+app.use("/api", apiRouter);
 
 checkDB();
 syncDB();
-//syncDB();
-app.listen(PORT,()=>{
-    console.log(`Servidor en marcha en puerto ${PORT}`);
-})
+app.listen(3000, () => console.log('rubrika en puerto 3000'));

@@ -8,19 +8,23 @@ const userModel = sequelize.define("users", {
         autoIncrement: true
     },
     name: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(55),
+        allowNull: false
+    },
+    email: {
+        type: DataTypes.STRING(55),
         allowNull: false
     },
     password: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(144),
         allowNull: false
     },
     role: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(13),
         allowNull: false
     }
 }, {
-    tableName: 'users', // nombre real de la tabla en la base de datos
+    tableName: 'users',
     timestamps: false
 })
 
