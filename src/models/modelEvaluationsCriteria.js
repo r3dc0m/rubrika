@@ -20,4 +20,6 @@ const evaluationCriteriaModel = sequelize.define("evaluations_criteria", {
     timestamps: false
 });
 
+evaluationCriteriaModel.removeAttribute('id');
+
 export default evaluationCriteriaModel;

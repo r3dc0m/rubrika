@@ -1,4 +1,4 @@
-import taskCriteriaModel from "../../models/taskCriteriaModel.js";
+import taskCriteriaModel from "../../models/modelTaskCriteria.js";
 
 async function getAllTaskCriteria(req, res) {
 

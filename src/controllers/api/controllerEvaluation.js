@@ -1,4 +1,4 @@
-import evaluationModel from "../../models/evaluationModel.js";
+import evaluationModel from "../../models/modelEvaluations.js";
 
 async function getAllEvaluations(req, res) {
     try {

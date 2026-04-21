@@ -1,5 +1,5 @@
 import { Router } from "express";
-import evaluationCriteriaController from "../../controllers/api/evaluationCriteriaController.js";
+import evaluationCriteriaController from "../../controllers/api/controllerEvaluationCriteria.js";
 
 const routerEvaluationCriteria = Router();
 

@@ -1,4 +1,4 @@
-import evaluationCriteriaModel from "../../models/evaluationCriteriaModel.js";
+import evaluationCriteriaModel from "../../models/modelEvaluationsCriteria.js";
 
 async function getAllEvaluationCriteria(req, res) {
     const evaluationCriteria = await evaluationCriteriaModel.findAll();

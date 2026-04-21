@@ -6,16 +6,15 @@ services:
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_PASSWORD=${DB_PASS}
     ports:
-      - ${DB_PORT}:5435
+      - ${DB_PORT}:5432
     restart: unless-stopped
     networks:
       - rubrika-network
     volumes:
       - ./db/data:/var/lib/postgresql/18/docker
 
-
 networks:
-  rubrika-net:
+  rubrika-network:
     driver: bridge

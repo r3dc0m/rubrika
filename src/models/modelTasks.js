@@ -8,7 +8,7 @@ const tasksModel = sequelize.define("tasks", {
         autoIncrement: true
     },
     task_name: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(55),
         allowNull: false
     },
     when_created: {
@@ -30,7 +30,7 @@ const tasksModel = sequelize.define("tasks", {
     }
 },
     {
-        tableName: 'tasks', // nombre real de la tabla en la base de datos
+        tableName: 'tasks',
         timestamps: false
     })
 
