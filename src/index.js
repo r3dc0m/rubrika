@@ -5,11 +5,8 @@ import { checkDB, syncDB } from "./config/db.js";
 import "./models/associations.js";
 
 dotenv.config();
-<<<<<<< HEAD
 
 const PORT = process.env.APP_PORT;
-=======
->>>>>>> 1627ab8 (0420.1646)
 const app = express();
 
 app.set('view engine', 'pug'); //engine PUG o EJS
