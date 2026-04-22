@@ -1,5 +1,8 @@
 import userModel from "../../models/modelUsers.js";
+<<<<<<< HEAD
 //import { IDNotNumberError } from "../../utils/errors/genericErrors.js";
+=======
+>>>>>>> origin/dev
 
 
 function getParsedId(id) {
@@ -15,6 +18,7 @@ async function getAllUsers(req, res) {
     const users = await userModel.findAll();
     res.json(users);
 }
+<<<<<<< HEAD
 /*
 async function getRideById(req, res) {
     const id = getParsedId(req.params.id);
@@ -62,6 +66,8 @@ export const functions = {
 }
 
 export default functions;*/
+=======
+>>>>>>> origin/dev
 
 export const functions = {
  getAllUsers

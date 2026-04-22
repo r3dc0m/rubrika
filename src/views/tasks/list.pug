@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+    h1 Lista de tareas
+
+    if tasks.length === 0
+        p No hay tareas registradas.
+    else
+        table
+            thead
+                tr
+                    th ID
+                    th Nombre
+                    th Fecha de creación
+                    th Fecha de entrega
+                    th Ponderación
+                    th Evaluación disponible
+            tbody
+                each task in tasks
+                    tr
+                        td= task.task_id
+                        td 
+                            a(href='/tasks/${task.task_id}')=task.task_name 
+                        td= task.when_created
+                        td= task.due_date
+                        td= task.ponderation + '%'
+                        td= task.eval_available ? 'Si' : 'No'
