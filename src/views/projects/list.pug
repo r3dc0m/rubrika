@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+    h1 Lista de Proyectos
+
+    if projects.length === 0
+        p No hay proyectos registrados.
+    else
+        table
+            thead
+                tr
+                    th ID
+                    th Nombre
+                    th Task ID
+                    th Repositorio
+            tbody
+                each project in projects
+                    tr
+                        td= project.project_id
+                        td
+                            a(href=`/projects/${project.project_id}`)= project.project_name
+                        td= project.task_id
+                        td
+                            if project.repo_link
+                                a(href=project.repo_link target="_blank") Ver repo
+                            else
+                                | -

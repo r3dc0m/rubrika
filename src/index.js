@@ -8,7 +8,7 @@ import "./models/associations.js";
 dotenv.config();
 const app = express();
 
-app.set('view engine', 'pug'); //engine PUG o EJS
+app.set('view engine', 'pug'); //engine PUG 
 app.set('views', './src/views'); //donde están los PUG
 
 app.use(express.static('public'));

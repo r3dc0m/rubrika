@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+    h1 Proyecto: #{project.project_name}
+    
+    p ID: #{project.project_id}
+    p Task ID: #{project.task_id}
+    p Nombre: #{project.project_name}
+    if project.repo_link
+        p Repositorio: 
+            a(href=project.repo_link target="_blank")= project.repo_link
+    else
+        p Repositorio: No disponible
+    
+    a(href="/projects") ← Volver a la lista
