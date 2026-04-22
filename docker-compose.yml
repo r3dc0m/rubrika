@@ -1,5 +1,4 @@
 services:
-
   db:
     image: postgres:16
     container_name: rubrika
@@ -15,8 +14,6 @@ services:
     volumes:
       - ./db/data:/var/lib/postgresql/18/docker
       - ./db/scripts:/docker-entrypoint-initdb.d/
-
-
 
   pgadmin:
     image: dpage/pgadmin4
