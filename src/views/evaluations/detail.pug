@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+    h1 Evaluación
+    
+    p Id evaluación: #{evaluation.evaluation_id}
+    p Id de usuario: #{evaluation.user_id}
+    p Id  de proyecto: #{evaluation.project_id}
+    p comentario general: #{evaluation.general_comment}
+    p Fecha de creación: #{evaluation.when_created}
+
+    a(href="/evaluations") ← Volver a la lista de evalauciones
