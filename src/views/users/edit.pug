@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+    h1 Editar Usuario: #{user.name}
+
+    if error
+        p.error= error
+    
+    form(method="POST" action=`/users/${user.user_id}/edit`)
+        div.form-group
+            label(for="name") Nombre:
+            input(type="text" id="name" name="name" value=user.name required)
+        
+        div.form-group
+            label(for="email") Email:
+            input(type="email" id="email" name="email" value=user.email required)
+        
+        div.form-group
+            label(for="password") Nueva contraseña (dejar vacío para mantener la actual):
+            input(type="password" id="password" name="password")
+        
+        div.form-group
+            label(for="role") Rol:
+            select(id="role" name="role" required)
+                option(value="alumno" selected=(user.role === 'alumno')) Alumno
+                option(value="profesor" selected=(user.role === 'profesor')) Profesor
+        
+        div.form-actions
+            button(type="submit") Guardar Cambios
+            a(href=`/users/${user.user_id}`) Cancelar

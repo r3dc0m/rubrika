@@ -7,4 +7,8 @@ block content
     p Email: #{user.email}
     p Rol: #{user.role}
     
-    a(href="/users") ← Volver a la lista
+    div.form-actions
+        a.btn-edit(href=`/users/${user.user_id}/edit`) ✏️ Editar
+        form(method="POST" action=`/users/${user.user_id}/delete` style="display:inline")
+            button.btn-delete(type="submit" onclick="return confirm('¿Seguro que quieres eliminar este usuario?')") 🗑️ Eliminar
+        a(href="/users") ← Volver a la lista
