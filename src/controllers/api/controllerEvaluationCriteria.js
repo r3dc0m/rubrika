@@ -8,7 +8,7 @@ async function getAllEvaluationCriteria(req, res) {
 async function getEvaluationCriteriaById(req, res) {
     const id = parseInt(req.params.id);
     const evaluationCriteria = await evaluationCriteriaModel.findOne({
-        where: { evaluations_evaluation_id: id }
+        where: { evaluation_id: id }
     });
     res.json(evaluationCriteria);
 }
@@ -21,10 +21,10 @@ async function createEvaluationCriteria(req, res) {
 async function updateEvaluationCriteria(req, res) {
     const id = parseInt(req.params.id);
     await evaluationCriteriaModel.update(req.body, {
-        where: { evaluations_evaluation_id: id }
+        where: { evaluation_id: id }
     });
     const evaluationCriteria = await evaluationCriteriaModel.findOne({
-        where: { evaluations_evaluation_id: id }
+        where: { evaluation_id: id }
     });
     res.json(evaluationCriteria);
 }
@@ -32,7 +32,7 @@ async function updateEvaluationCriteria(req, res) {
 async function deleteEvaluationCriteria(req, res) {
     const id = parseInt(req.params.id);
     await evaluationCriteriaModel.destroy({
-        where: { evaluations_evaluation_id: id }
+        where: { evaluation_id: id }
     });
     res.json({ message: "Eliminado correctamente" });
 }

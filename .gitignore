@@ -143,3 +143,5 @@ db/data
 notes
 requisitos.md
 package-lock.json
+docker-compose.yml
+db.js
