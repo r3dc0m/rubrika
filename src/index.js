@@ -6,6 +6,11 @@ import { checkDB, syncDB } from "./config/db.js";
 import "./models/associations.js";
 
 dotenv.config();
+<<<<<<< HEAD
+=======
+
+const PORT = process.env.APP_PORT;
+>>>>>>> 845122e (feat/routes: arreglar APP_PORT y actualizar modelos y controladores)
 const app = express();
 
 app.set('view engine', 'pug'); //engine PUG o EJS
