@@ -8,6 +8,7 @@ import routerTaskCriteria from "./api/routerTaskCriteria.js";
 import routerTasks from "./api/routerTasks.js";
 import routerUser from "./api/routerUser.js";
 import routerUserProjects from "./api/routerUserProjects.js";
+import routerAuth from "./api/routerAuth.js";
 
 const router = Router();
 
@@ -19,6 +20,7 @@ router.use("/task-criteria", routerTaskCriteria);
 router.use("/tasks", routerTasks);
 router.use("/user", routerUser);
 router.use("/user-projects", routerUserProjects);
+router.use("/auth", routerAuth);
 
 
 
