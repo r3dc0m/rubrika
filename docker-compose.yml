@@ -12,8 +12,8 @@ services:
     networks:
       - rubrika-network
     volumes:
-      - rubrika_data:/var/lib/postgresql/data
-      - ./db/scripts:/docker-entrypoint-initdb.d  # ← ESTA LÍNEA ES CRÍTICA
+      - ./db/data:/var/lib/postgresql/18/docker
+      - ./db/scripts:/docker-entrypoint-initdb.d  
 
   pgadmin:
     image: dpage/pgadmin4
@@ -32,6 +32,3 @@ services:
 networks:
   rubrika-network:
     driver: bridge
-
-volumes:
-  rubrika_data:

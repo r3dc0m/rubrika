@@ -1,6 +1,6 @@
 BEGIN;
 
--- Tabla users (roles: alumno, profesor)
+-- Tabla users 
 CREATE TABLE IF NOT EXISTS users (
     user_id SERIAL PRIMARY KEY,
     name VARCHAR(55) NOT NULL,
