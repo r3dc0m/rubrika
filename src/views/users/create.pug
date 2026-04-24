@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+    h1 Crear Nuevo Usuario
+
+    if error
+        p.error= error
+    
+    form(method="POST" action="/users/create")
+        div.form-group
+            label(for="name") Nombre:
+            input(type="text" id="name" name="name" required)
+        
+        div.form-group
+            label(for="email") Email:
+            input(type="email" id="email" name="email" required)
+        
+        div.form-group
+            label(for="password") Contraseña:
+            input(type="password" id="password" name="password" required)
+        
+        div.form-group
+            label(for="role") Rol:
+            select(id="role" name="role" required)
+                option(value="alumno") Alumno
+                option(value="profesor") Profesor
+        
+        div.form-actions
+            button(type="submit") Crear Usuario
+            a(href="/users") Cancelar

@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+    h1 Lista de evaluaciones
+
+    if evaluations.length === 0
+        p No hay evaluaciones registradas.
+    else
+        table
+            thead
+                tr
+                    th ID evaluación
+                    th Id usuario
+                    th Id proyecto
+                    th Comentarios generales
+                    th Fecha de creación
+            tbody
+                each evaluation in evaluations
+                    tr
+                        td= evaluation.evaluation_id
+                        td 
+                            a(href=`/evaluations/${evaluation.evaluation_id}`)=evaluation.evaluation_id 
+                        td= evaluation.user_id
+                        td= evaluation.project_id
+                        td= evaluation.general_comment
+                        td= evaluation.ewhen_created

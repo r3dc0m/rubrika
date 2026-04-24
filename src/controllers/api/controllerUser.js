@@ -1,12 +1,17 @@
 import userModel from "../../models/modelUsers.js";
 
-async function getAllUsers(req, res) {
-    const users = await userModel.findAll();
-    res.json(users);
+
+function getParsedId(id) {
+    const idNum = parseInt(id);
+    if (!idNum || isNaN(idNum)) {
+        throw new IDNotNumberError();
+    }
+    return idNum;
 }
 
-async function getUserExist(req, res) {
-    const users = await userModel.findOne();
+
+async function getAllUsers(req, res) {
+    const users = await userModel.findAll();
     res.json(users);
 }
 

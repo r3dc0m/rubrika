@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+    h1 Lista de Usuarios
+
+    a.btn-create(href="/users/create") + Crear Usuario
+
+    if users.length === 0
+        p No hay usuarios registrados.
+    else
+        table
+            thead
+                tr
+                    th ID
+                    th Nombre
+                    th Email
+                    th Rol
+            tbody
+                each user in users
+                    tr
+                        td= user.user_id
+                        td
+                            a(href=`/users/${user.user_id}`)= user.name
+                        td= user.email
+                        td= user.role

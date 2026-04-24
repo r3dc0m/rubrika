@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+    h1 Usuario: #{user.name}
+    
+    p ID: #{user.user_id}
+    p Email: #{user.email}
+    p Rol: #{user.role}
+    
+    div.form-actions
+        a.btn-edit(href=`/users/${user.user_id}/edit`) ✏️ Editar
+        form(method="POST" action=`/users/${user.user_id}/delete` style="display:inline")
+            button.btn-delete(type="submit" onclick="return confirm('¿Seguro que quieres eliminar este usuario?')") 🗑️ Eliminar
+        a(href="/users") ← Volver a la lista
