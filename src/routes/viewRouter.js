@@ -9,7 +9,7 @@ const router = Router();
 
 router.use("/users", viewRouterUser);
 router.use("/projects", viewRouterProject);
-router.use("/tasks", viewRouterTasks);
+router.use("/tasks",viewRouterTasks);
 router.use("/evaluations", viewRouterEvaluations);
 router.use("/criteria", viewRouterCriteria);
 

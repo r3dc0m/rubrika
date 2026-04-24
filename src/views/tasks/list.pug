@@ -20,7 +20,7 @@ block content
                     tr
                         td= task.task_id
                         td 
-                            a(href='/tasks/${task.task_id}')=task.task_name 
+                            a(href=`/tasks/${task.task_id}`)=task.task_name 
                         td= task.when_created
                         td= task.due_date
                         td= task.ponderation + '%'
