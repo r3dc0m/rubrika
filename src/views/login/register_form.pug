@@ -2,19 +2,9 @@ extends ../layout
 
 block content
     .form-container 
-        .form-card
-            span.form-title Crear cuenta
-            span.form-subtitle
-                | ¿Ya tienes una cuenta? 
-                a(href="/auth/login") Inicia sesión
-
-        form.form(
-            action='/auth/register/profesor',
-            method='POST'
-            novalidate
-        )
-
+        h2 Registrarse
         // Nombre
+        form(method='POST' action='/register')
         .form-group
             label(for='name') Nombre
             input#name(
@@ -22,27 +12,10 @@ block content
                 name='name', required, 
                 placeholder='Elsa'
                 value=formData && formData.name ? formData.name : ''
-                required
                 min-lenght='2'
                 max-lenght='50'
             )
             span.field-error(role='alert') #{errors && errors.name ? errors.name : ''}
-
-        //Apellido
-        .form-group
-        label(for="apellido") Primer apellido
-            span.required *
-        input#apellido(
-            type="text", 
-            name="apellido", 
-            required, 
-            placeholder="Apellido Apellido",
-            value=formData && formData.apellido ? formData.apellido : ''
-            required 
-            min-lenght='2'
-            max-lenght='80'
-        )
-        span.field-error(role='alert') #{errors && errors.apellido ? errors.apellido : ''}
 
         //Correo
         .form-group
@@ -53,7 +26,6 @@ block content
             name='email'
             placeholder='correo@correo.com'
             value=formData && formData.email
-            required
             autocomplete='email'
           )
           span.field-error(role='alert') #{errors && errors.email ? errors.email : ''}
@@ -67,7 +39,6 @@ block content
                     type='password'
                     name='password'
                     placeholder='Contraseña segura'
-                    required
                     min-lenght='8'
                 )
                 span.field-hint
@@ -84,34 +55,9 @@ block content
                     name='confirmPassword'
                     placeholder='Repetir contraseña'
                     required
-                    min-lenght='8'
+                    minlength='8'
                 )
                 span.field-error(role='alert') #{errors && errors.confirmPassword ? errors.confirmPassword : ''}
-                name='password'
-                placeholder='Contraseña segura'
-                required
-                min-lenght='8'
-            span.field-hint
-                Usa al menos 8 caracteres, una mayúscula, un número y un símbolo.
-            span.field-error(role='alert') #{errors && errors.password ? errors.password : ''}
-            
-            //Términos y condiciones
-        .form-group.form-group--checkbox
-            label.checkbox-label
-                input#terminos(
-                    type='checkbox', 
-                    name='terms', 
-                    required
-                    checked=formData && formData.terms ? 'checked' : false
-                    )
-                span.checkmark(aria-hidden="true")
-                span.checkbox-text
-                    Acepto los
-                a(href="#", target="_blank" rel='noopener noreferrer') términos y condiciones
-                |&nbsp;y la&nbsp;
-                a(href="#", target="_blank" rel='noopener noreferrer') política de privacidad
-                span.required *
-            span.field-error(role='alert') #{errors && errors.terms ? errors.terms : ''}
 
             // Mensaje de error general
         if errors && errors.general
@@ -120,5 +66,10 @@ block content
         // Botón de envío
         button.btn.butn-primary(type='submit') Registrarse
 
-        // Botón de cancelar
-        button.btn.butn-primary(type='submit') Cancelar
+        .form-card
+            span.form-title
+                | ¿Ya tienes una cuenta?
+                a(href="/login") Conéctate
+
+
+

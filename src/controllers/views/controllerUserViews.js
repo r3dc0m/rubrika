@@ -60,14 +60,15 @@ async function createUser(req, res) {
         
         await userModel.create({
             name,
-            email,
             password,
+            email,
             role
         });
         
         res.redirect("/users?success=Usuario creado correctamente");
         
     } catch (error) {
+        console.error(error)
         res.render("users/create", { 
             title: "Crear usuario",
             error: "Error al crear usuario: " + error.message 

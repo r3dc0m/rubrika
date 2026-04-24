@@ -8,7 +8,7 @@ function requireRoleApi(...roles) {
             next();
         }
         else {
-            res.status(403).redirect("/auth/login?message=Acceso denegado");
+            res.status(403).redirect("/login?message=Acceso denegado");
         }
     }
 }
@@ -29,13 +29,14 @@ const verifyToken = (req, res, next) => {
 };
 
 async function checkCredentials(req, res, next) {
+    console.log("hemos llegado al middleware");
     const user = await userService.getUserByEmail(req.body.email);
     if (!user) {
-        return res.redirect("/auth/login?message=Credenciales incorrectas");
+        return res.redirect("/login?message=Credenciales incorrectas");
     }
     const isPasswordCorrect = await bcrypt.compare(req.body.password, user.password);
     if (!isPasswordCorrect) {
-        return res.redirect("/auth/login?message=Credenciales incorrectas");
+        return res.redirect("/login?message=Credenciales incorrectas");
     }
     req.session.user = {
         id: user.user_id,
@@ -50,7 +51,7 @@ async function isLoggedIn(req, res, next) {
     if (req.session.user) {
         next()
     } else {
-        return res.redirect("/auth/login?message=Inicia sesión");
+        return res.redirect("/login?message=Inicia sesión");
     }
 }
 
@@ -70,7 +71,6 @@ const injectUserToViews = (req, res, next) => {
 export {
     checkCredentials,
     isLoggedIn,
-    requireRoleApi,
     injectUserToViews,
     verifyToken,
     requireRoleApi

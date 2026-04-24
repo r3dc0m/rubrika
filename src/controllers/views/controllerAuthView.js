@@ -1,15 +1,19 @@
-import userService from "../services/serviceUser.js";
+import userService from "../../services/serviceUser.js";
 import bcrypt from "bcrypt";
 
 
 export const showLoginForm = (req, res) => {
     const message = req.query.message || null;
-    res.render('login', { message });
+    res.render('login/login_form', { message });
 };
 
 
 export const showRegisterForm = (req, res) => {
-    res.render('register', { error: null, formData: {} });
+    res.render('login/register_form', { error: null, formData: {} });
+};
+
+export const showUserForm = (req, res) => {
+    res.render('login/user_form', { error: null, formData: {} });
 };
 
 
