@@ -1,0 +1,152 @@
+:root {
+  --bg: #1e315d;
+  --bg2: #2a4c96;
+  --card: rgba(133, 155, 207, 0.72);
+  --line: rgba(144, 57, 57, 0.08);
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --accent: #7c3aed;
+  --accent2: #22c55e;
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(124, 58, 237, 0.22), transparent 30%),
+    radial-gradient(circle at top right, rgba(34, 197, 94, 0.14), transparent 25%),
+    linear-gradient(135deg, var(--bg), var(--bg2));
+  background-attachment: fixed;
+  line-height: 1.5;
+}
+
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 18px 24px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(15, 23, 42, 0.55);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Nav */
+.navcontainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: var(--shadow);
+}
+
+.navcontainer a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 10px 14px;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+
+.navcontainer a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.navcontainer .center {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.navcontainer .left,
+.navcontainer .right {
+  min-width: 90px;
+}
+
+.navcontainer .right {
+  text-align: right;
+}
+
+/* Main */
+#app {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 24px 40px;
+}
+
+#app h1 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+}
+
+/* Content card */
+#content {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+#content p {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header {
+    padding: 12px;
+  }
+
+  .navcontainer {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .navcontainer .left,
+  .navcontainer .right {
+    min-width: auto;
+    text-align: center;
+  }
+
+  .navcontainer .center {
+    justify-content: center;
+  }
+
+  #app {
+    margin-top: 24px;
+    padding: 0 12px 28px;
+  }
+
+  #content {
+    padding: 20px;
+    border-radius: 18px;
+  }
+}
