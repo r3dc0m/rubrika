@@ -10,11 +10,9 @@ const router = Router();
 
 router.use("/users", viewRouterUser);
 router.use("/projects", viewRouterProject);
-router.use("/tasks",viewRouterTasks);
+router.use("/tasks", viewRouterTasks);
 router.use("/evaluations", viewRouterEvaluations);
 router.use("/criteria", viewRouterCriteria);
-router.use("/login", viewAuthRoutes);
-
-
+router.use("/login", viewAuthRoutes);  // ← Montado en /login
 
 export default router;

@@ -4,20 +4,17 @@ import { showLoginForm, showRegisterForm, register, logout } from '../../control
 
 const router = express.Router();
 
-// vistas
-router.get('/', showLoginForm);
-router.get('/register', showRegisterForm);
+router.get('/', showLoginForm);           
+router.get('/register', showRegisterForm); 
 
 // validación formularios
-router.post('/register', register);
-router.post('/login', checkCredentials, (req, res) => {
-    res.redirect('/dashboard');
+router.post('/register', register);        
+router.post('/', checkCredentials, (req, res) => {
+    // Redirigir al perfil del usuario logueado
+    const userId = req.session.user.id;
+    res.redirect(`/users/${userId}`);
 });
 
-router.get('/logout', logout);
-
-router.get('/dashboard', isLoggedIn, (req, res) => {
-    res.render('dashboard', { user: req.session.user });
-});
+router.get('/logout', logout);     
 
 export default router;
