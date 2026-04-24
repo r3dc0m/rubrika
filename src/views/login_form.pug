@@ -1,0 +1,86 @@
+extends ../layout
+
+block content
+    .form-container 
+        .form-card
+            span.form-title Crear cuenta
+            span.form-subtitle
+                | ¿No tienes una  
+                a(href="/auth/login") Regístrate
+
+        form.form(
+            action='/auth/register/profesor',
+            method='POST'
+            novalidate
+        )
+
+        // Nombre
+        .form-group
+            label(for='name') Nombre
+            input#name(
+                type='text', 
+                name='name', required, 
+                placeholder='Elsa'
+                value=formData && formData.name ? formData.name : ''
+                required
+                min-lenght='2'
+                max-lenght='50'
+            )
+            span.field-error(role='alert') #{errors && errors.name ? errors.name : ''}
+
+        //Apellido
+        .form-group
+        label(for="apellido") Primer apellido
+            span.required *
+        input#apellido(
+            type="text", 
+            name="apellido", 
+            required, 
+            placeholder="Apellido Apellido",
+            value=formData && formData.apellido ? formData.apellido : ''
+            required 
+            min-lenght='2'
+            max-lenght='80'
+        )
+        span.field-error(role='alert') #{errors && errors.apellido ? errors.apellido : ''}
+
+        //Correo
+        .form-group
+          label(for='email') Correo electrónico
+            span.required *
+          input#email(
+            type='email'
+            name='email'
+            placeholder='correo@correo.com'
+            value=formData && formData.email
+            required
+            autocomplete='email'
+          )
+          span.field-error(role='alert') #{errors && errors.email ? errors.email : ''}
+
+        //Contraseña
+        .form-group
+            label(for='password') Contraseña
+                span.required *
+            .input-password-wrapper
+                input#password(
+                    type='password'
+                    name='password'
+                    placeholder='Contraseña segura'
+                    required
+                    min-lenght='8'
+                )
+                span.field-hint
+                    Usa al menos 8 caracteres, una mayúscula, un número y un símbolo.
+                span.field-error(role='alert') #{errors && errors.password ? errors.password : ''}
+                a.forgot-password(href='#') He olvidado mi contraseña    
+
+            // Mensaje de error general
+        if errors && errors.general
+            .form-error(role='alert') #{errors.general} 
+
+        // Botón de envío
+        button.btn.btn-primary(type='submit') Iniciar sesión
+
+        // Botón de cancelar
+        button.btn.btn-primary(type='submit') Cancelar
