@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+    h1 Lista de Criterios de Evaluación
+
+    if criteria.length === 0
+        p No hay criterios registrados.
+    else
+        table
+            thead
+                tr
+                    th ID
+                    th Nombre del Criterio
+            tbody
+                each criterion in criteria
+                    tr
+                        td= criterion.criteria_id
+                        td
+                            a(href=`/criteria/${criterion.criteria_id}`)= criterion.criteria_name

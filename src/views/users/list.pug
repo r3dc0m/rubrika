@@ -3,6 +3,8 @@ extends ../layout
 block content
     h1 Lista de Usuarios
 
+    a.btn-create(href="/users/create") + Crear Usuario
+
     if users.length === 0
         p No hay usuarios registrados.
     else
