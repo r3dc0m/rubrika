@@ -74,6 +74,6 @@ export const logout = (req, res) => {
             console.error(err);
             return res.status(500).send('Error al cerrar sesión');
         }
-        res.redirect('/login?message=Sesión cerrada');
+        res.redirect('/?message=Sesión cerrada');
     });
 };

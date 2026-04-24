@@ -23,32 +23,26 @@ app.use(session({
     }
 }));
 
-// Middleware para inyectar usuario en vistas
 app.use(injectUserToViews);
 
-// Configuración de Pug
 app.set('view engine', 'pug');
 app.set('views', './src/views');
 
-// Middlewares estáticos y parsing
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// LOG de todas las peticiones (para depuración)
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.path}`);
     next();
 });
 
-// MIDDLEWARE PARA NORMALIZAR URLs (eliminar barra final)
 app.use((req, res, next) => {
     // Si la ruta no es la raíz y termina con barra
     if (req.path !== '/' && req.path.endsWith('/')) {
-        // Eliminar la barra final
         const newPath = req.path.slice(0, -1);
         console.log(`🔄 Redirigiendo: ${req.path} → ${newPath}`);
-        // Redirigir permanentemente (301) o temporalmente (302)
+        // Redirigir permanentemente (301)
         return res.redirect(301, newPath);
     }
     next();
