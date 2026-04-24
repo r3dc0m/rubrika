@@ -5,8 +5,8 @@ block content
         .form-card
             span.form-title Crear cuenta
             span.form-subtitle
-                | ¿Ya tienes una cuenta? 
-                a(href="/auth/login") Inicia sesión
+                | ¿No tienes una  
+                a(href="/auth/login") Regístrate
 
         form.form(
             action='/auth/register/profesor',
@@ -73,52 +73,14 @@ block content
                 span.field-hint
                     Usa al menos 8 caracteres, una mayúscula, un número y un símbolo.
                 span.field-error(role='alert') #{errors && errors.password ? errors.password : ''}
-
-        //Repetir contraseña
-        .form-group
-            label(for='confirmPassword') Repetir contraseña
-                span.required *
-            .input-password-wrapper
-                input#confirmPassword(
-                    type='password'
-                    name='confirmPassword'
-                    placeholder='Repetir contraseña'
-                    required
-                    min-lenght='8'
-                )
-                span.field-error(role='alert') #{errors && errors.confirmPassword ? errors.confirmPassword : ''}
-                name='password'
-                placeholder='Contraseña segura'
-                required
-                min-lenght='8'
-            span.field-hint
-                Usa al menos 8 caracteres, una mayúscula, un número y un símbolo.
-            span.field-error(role='alert') #{errors && errors.password ? errors.password : ''}
-            
-            //Términos y condiciones
-        .form-group.form-group--checkbox
-            label.checkbox-label
-                input#terminos(
-                    type='checkbox', 
-                    name='terms', 
-                    required
-                    checked=formData && formData.terms ? 'checked' : false
-                    )
-                span.checkmark(aria-hidden="true")
-                span.checkbox-text
-                    Acepto los
-                a(href="#", target="_blank" rel='noopener noreferrer') términos y condiciones
-                |&nbsp;y la&nbsp;
-                a(href="#", target="_blank" rel='noopener noreferrer') política de privacidad
-                span.required *
-            span.field-error(role='alert') #{errors && errors.terms ? errors.terms : ''}
+                a.forgot-password(href='#') He olvidado mi contraseña    
 
             // Mensaje de error general
         if errors && errors.general
             .form-error(role='alert') #{errors.general} 
 
         // Botón de envío
-        button.btn.butn-primary(type='submit') Registrarse
+        button.btn.btn-primary(type='submit') Iniciar sesión
 
         // Botón de cancelar
-        button.btn.butn-primary(type='submit') Cancelar
+        button.btn.btn-primary(type='submit') Cancelar
