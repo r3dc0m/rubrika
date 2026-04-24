@@ -8,54 +8,71 @@ import { checkDB, syncDB } from "./config/db.js";
 import "./models/associations.js";
 import session from 'express-session';
 
-
 dotenv.config();
 const app = express();
 
+// Configuración de sesión
 app.use(session({
-  secret: process.env.SESSION_SECRET,  // añadir a .env clave para firmar la cookie de sesión
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: false,
-    httpOnly: true,
-    maxAge: 24 * 60 * 60 * 1000
-  }
-}))
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false,
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000
+    }
+}));
 
+// Middleware para inyectar usuario en vistas
 app.use(injectUserToViews);
 
-app.set('view engine', 'pug'); //engine PUG 
-app.set('views', './src/views'); //donde están los PUG
+// Configuración de Pug
+app.set('view engine', 'pug');
+app.set('views', './src/views');
 
+// Middlewares estáticos y parsing
 app.use(express.static('public'));
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// LOG de todas las peticiones (para depuración)
 app.use((req, res, next) => {
-  console.log(`${req.method} ${req.path}`);  // ← LOG TODO
-  next();
+    console.log(`${req.method} ${req.path}`);
+    next();
 });
 
+// MIDDLEWARE PARA NORMALIZAR URLs (eliminar barra final)
+app.use((req, res, next) => {
+    // Si la ruta no es la raíz y termina con barra
+    if (req.path !== '/' && req.path.endsWith('/')) {
+        // Eliminar la barra final
+        const newPath = req.path.slice(0, -1);
+        console.log(`🔄 Redirigiendo: ${req.path} → ${newPath}`);
+        // Redirigir permanentemente (301) o temporalmente (302)
+        return res.redirect(301, newPath);
+    }
+    next();
+});
+
+// Ruta principal
 app.get("/", (req, res) => {
-  res.render("layout", {
-    title: "Rubrika",
-    apiBase: "/api"
-  });
+    res.render("layout", {
+        title: "Rubrika",
+        apiBase: "/api"
+    });
 });
 
+// Rutas de API y vistas
 app.use("/api", apiRouter);
-
-// app.use('/auth', viewAuthRoutes);
 app.use("/", viewRouter);
 
+// Iniciar servidor
 async function startServer() {
-  await checkDB();
-  await syncDB();
-  app.listen(3000, () => {
-    console.log('Servidor Rubrika en marcha en puerto 3000');
-  });
+    await checkDB();
+    await syncDB();
+    app.listen(3000, () => {
+        console.log('Servidor Rubrika en marcha en puerto 3000');
+    });
 }
 
 startServer();

@@ -56,7 +56,7 @@ export const register = async (req, res) => {
             role: 'alumno'
         });
 
-        res.redirect('/auth/login?message=Usuario registrado exitosamente');
+        res.redirect('/login?message=Usuario registrado exitosamente');
 
     } catch (error) {
         console.error(error);
@@ -74,6 +74,6 @@ export const logout = (req, res) => {
             console.error(err);
             return res.status(500).send('Error al cerrar sesión');
         }
-        res.redirect('/auth/login?message=Sesión cerrada');
+        res.redirect('/login?message=Sesión cerrada');
     });
 };

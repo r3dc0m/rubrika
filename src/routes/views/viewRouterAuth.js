@@ -10,11 +10,9 @@ router.get('/register', showRegisterForm);
 
 // validación formularios
 router.post('/register', register);
-router.post('/', checkCredentials, (req, res) => {
-
-//    res.redirect('/');
+router.post('/login', checkCredentials, (req, res) => {
+    res.redirect('/dashboard');
 });
-
 
 router.get('/logout', logout);
 
