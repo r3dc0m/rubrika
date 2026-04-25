@@ -7,8 +7,12 @@ nav.navcontainer
             a(href="/projects") Proyectos
             a(href="/evaluations") Evaluaciones
         div.right
-<<<<<<< HEAD
-            a(href="/users") Usuario
+            if user
+                span ¡Hola, #{user.name}!
+                a(href="/users") Usuarios
+                a(href="/logout") Cerrar sesión
+            else
+                a(href="/login") Login
 
         button.hamburger(aria-label="Abrir menú" aria-expanded="false")
             span.hamburger__line
@@ -17,10 +21,18 @@ nav.navcontainer
 
 //- Panel de navegación mobile
 nav.nav-mobile
-    a(href="/tasks") Tareas
-    a(href="/projects") Proyectos
-    a(href="/evaluations") Correcciones
-    a(href="/users") Usuario
+    if user
+        a(href="/tasks") Tareas
+        a(href="/projects") Proyectos
+        a(href="/evaluations") Evaluaciones
+        a(href="/users") Usuarios
+        a(href="/logout") Cerrar sesión
+        span.user-info ¡Hola, #{user.name}!
+    else
+        a(href="/tasks") Tareas
+        a(href="/projects") Proyectos
+        a(href="/evaluations") Evaluaciones
+        a(href="/login") Login
 
 script.
     const btn = document.querySelector('.hamburger');
@@ -39,10 +51,3 @@ script.
             });
         });
     }
-=======
-        if user
-            span ¡Hola, #{user.name}!
-            a(href="/logout") Cerrar sesión
-        else
-            a(href="/login") Login
->>>>>>> origin/dev
