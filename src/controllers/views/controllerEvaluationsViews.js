@@ -1,6 +1,6 @@
 import evaluationModel from "../../models/modelEvaluations.js";
 import projectModel from "../../models/modelProjects.js";
-import criteriaModel from "../../models/modelCriterias.js";
+import criteriaModel from "../../models/modelCriteria.js";
 import evaluationsCriteriaModel from "../../models/modelEvaluationsCriteria.js";
 
 async function getAllEvaluationsView(req, res) {
