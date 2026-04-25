@@ -1,4 +1,4 @@
-/* CONTENEDOR */
+/*CONTENEDOR */
 .form-container {
   min-height: calc(100vh - 80px);
   display: flex;
@@ -25,7 +25,7 @@
   display: block;
   font-size: 1.6rem;
   font-weight: 800;
-  color: var(--text);           
+  color: var(--text);         
   letter-spacing: -0.03em;
   margin-bottom: 0.25rem;
 }
@@ -33,18 +33,18 @@
 .form-subtitle {
   display: block;
   font-size: var(--font-size-sm);
-  color: var(--text-light);      
+  color: var(--text-light);  
   margin-bottom: 1.5rem;
 }
 
 .form-subtitle a {
-  color: var(--primary);
+  color: var(--primary);      
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: underline;  
 }
 
 .form-subtitle a:hover {
-  text-decoration: underline;
+  color: var(--primary-dark);
 }
 
 /* FORMULARIO */
@@ -64,7 +64,7 @@
 .form-group label {
   font-size: var(--font-size-sm);
   font-weight: 600;
-  color: var(--text);    
+  color: var(--text);       ¡¡
 }
 
 .form-group input[type="text"],
@@ -72,28 +72,38 @@
 .form-group input[type="password"] {
   width: 100%;
   padding: 0.75rem 1rem;
-  font-size: var(--font-size);
+  font-size: var(--font-size);  ¡¡
   font-family: var(--font);
-  color: var(--text);
+  color: var(--text);        ¡¡
   background: var(--bg);
   border: 1.5px solid var(--border);
   border-radius: var(--radius-sm);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   outline: none;
+  min-height: 44px;     ¡¡
 }
 
 .form-group input:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 3px var(--primary-light);
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
 .form-group input::placeholder {
-  color: var(--muted);
+  color: var(--muted);     
 }
 
+/* Estado de error */
 .form-group input[aria-invalid="true"],
 .form-group input:invalid:not(:placeholder-shown) {
   border-color: var(--red);
+  border-width: 2px;
+}
+
+.form-group input[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 3px var(--red-light);
+  outline-color: var(--red);
 }
 
 /* CHECKBOX */
@@ -114,9 +124,9 @@
 }
 
 .checkbox-label input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  min-width: 18px;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
   accent-color: var(--primary);
   margin-top: 2px;
   cursor: pointer;
@@ -134,6 +144,7 @@
 .checkbox-text a {
   color: var(--primary);
   font-weight: 600;
+  text-decoration: underline;
 }
 
 /* CAMPOS AUXILIARES */
@@ -145,15 +156,23 @@
 
 .field-hint {
   font-size: 0.78rem;
-  color: var(--text-light);
+  color: var(--text-light);   
   line-height: 1.5;
 }
 
 .field-error {
   font-size: 0.78rem;
-  color: var(--red);           
-  font-weight: 500;
+  color: var(--red);         
+  font-weight: 600;
   min-height: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.field-error:not(:empty)::before {
+  content: '⚠';
+  font-size: 0.7rem;
 }
 
 .form-error {
@@ -162,8 +181,8 @@
   border-radius: var(--radius-sm);
   padding: 0.75rem 1rem;
   font-size: var(--font-size-sm);
-  color: var(--red);               
-  font-weight: 500;
+  color: var(--red);       
+  font-weight: 600;
 }
 
 .forgot-password {
@@ -172,20 +191,19 @@
   font-weight: 600;
   text-align: right;
   align-self: flex-end;
-  text-decoration: none;
+  text-decoration: underline;
   transition: color 0.2s ease;
+  padding: 4px 0;            
 }
 
 .forgot-password:hover {
   color: var(--primary-dark);
-  text-decoration: underline;
 }
 
 .required {
   color: var(--red);
   margin-left: 2px;
   font-weight: 700;
-  aria-hidden: true;
 }
 
 /* BOTONES */
@@ -203,15 +221,20 @@
   transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
   text-decoration: none;
   width: 100%;
-}
+  min-height: 44px;            
 
 .btn:active {
   transform: scale(0.98);
 }
 
+.btn:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
 .btn-primary {
   background: var(--primary);
-  color: #FFFFFF;              
+  color: #FFFFFF;             
   box-shadow: var(--shadow-sm);
 }
 
@@ -220,15 +243,10 @@
   box-shadow: var(--shadow);
 }
 
-.btn-primary:focus-visible {
-  outline: 3px solid var(--primary);
-  outline-offset: 3px;
-}
-
 /* Botón secundario (cancelar) */
 .btn + .btn {
   background: transparent;
-  color: var(--text-light);   
+  color: var(--text);          
   border: 1.5px solid var(--border);
   margin-top: 0.5rem;
   box-shadow: none;
@@ -240,14 +258,128 @@
   color: var(--primary);
 }
 
+.btn + .btn:focus-visible {
+  outline-color: var(--text);
+}
+
+/* Botón de peligro */
+.btn-danger {
+  background: var(--red);
+  color: #FFFFFF;           
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-danger:hover {
+  background: #d42245;
+  box-shadow: var(--shadow);
+}
+
+.btn-danger:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* ALERTAS — login_form.pug */
+.alert {
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.alert-info {
+  background: var(--primary-light);
+  color: var(--primary);    
+  border: 1px solid var(--primary);
+}
+
+/* DASHBOARD — user_form.pug */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.welcome-section h1 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  color: var(--text);          
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-section p {
+  font-size: var(--font-size);
+  color: var(--text-light);  
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.actions .btn {
+  width: auto;
+}
+
+.dashboard-content {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.dashboard-content p {
+  font-size: var(--font-size);
+  color: var(--text-light);
+}
+
 /* RESPONSIVE */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions .btn {
+    width: 100%;
+  }
+}
+
 @media (max-width: 480px) {
+  .form-container {
+    align-items: flex-start;
+    padding: 1.5rem 1rem;
+  }
+
   .form-card {
     padding: 1.75rem 1.25rem;
     border-radius: var(--radius);
+    box-shadow: none;
+    border: 1px solid var(--border);
   }
 
   .form-title {
     font-size: 1.3rem;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="password"] {
+    font-size: 1rem;
+    min-height: 48px;
+  }
+
+  .btn {
+    min-height: 48px;
   }
 }

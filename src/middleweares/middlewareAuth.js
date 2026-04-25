@@ -2,17 +2,54 @@ import userService from "../services/serviceUser.js";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken'; 
 
-function requireRoleApi(...roles) {
+// Para VISTAS WEB
+function requireRole(...roles) {
     return (req, res, next) => {
-        if (roles.includes(req.session.user?.role)) {
+        if (!req.session.user) {
+            return res.redirect('/login?message=Inicia sesión primero');
+        }
+        
+        if (roles.includes(req.session.user.role)) {
             next();
+        } else {
+            res.status(403).render('error', { 
+                message: 'No tienes permiso para acceder a esta página',
+                error: { status: 403 }
+            });
         }
-        else {
-            res.status(403).redirect("/auth/login?message=Acceso denegado");
-        }
-    }
+    };
 }
 
+// Para API (devuelve JSON)
+function requireRoleApi(...roles) {
+    return (req, res, next) => {
+        const user = req.user || req.session.user;
+        
+        if (!user) {
+            return res.status(401).json({ error: 'No autorizado. Inicia sesión primero.' });
+        }
+        
+        if (roles.includes(user.role)) {
+            next();
+        } else {
+            res.status(403).json({ error: 'Acceso denegado. No tienes permisos suficientes.' });
+        }
+    };
+}
+
+
+
+
+// function requireRoleApi(...roles) {
+//     return (req, res, next) => {
+//         if (roles.includes(req.session.user?.role)) {
+//             next();
+//         }
+//         else {
+//             res.status(403).redirect("/login?message=Acceso denegado");
+//         }
+//     }
+// }
 const verifyToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -31,17 +68,17 @@ const verifyToken = (req, res, next) => {
 async function checkCredentials(req, res, next) {
     const user = await userService.getUserByEmail(req.body.email);
     if (!user) {
-        return res.redirect("/auth/login?message=Credenciales incorrectas");
+        return res.redirect("/login?message=Credenciales incorrectas");
     }
     const isPasswordCorrect = await bcrypt.compare(req.body.password, user.password);
     if (!isPasswordCorrect) {
-        return res.redirect("/auth/login?message=Credenciales incorrectas");
+        return res.redirect("/login?message=Credenciales incorrectas");
     }
     req.session.user = {
         id: user.user_id,
+        name: user.name,
         email: user.email,
-        role: user.role,
-        name: user.name
+        role: user.role
     }
     next();
 }
@@ -50,7 +87,7 @@ async function isLoggedIn(req, res, next) {
     if (req.session.user) {
         next()
     } else {
-        return res.redirect("/auth/login?message=Inicia sesión");
+        return res.redirect("/login?message=Inicia sesión");
     }
 }
 
@@ -60,7 +97,7 @@ const injectUserToViews = (req, res, next) => {
     if (req.session && req.session.user) {
         res.locals.user = req.session.user;
     } else {
-        res.locals.user = null; // Opcional: asegura que 'user' esté definido como null si no hay sesión
+        res.locals.user = null;
     }
 
     next();
@@ -70,8 +107,8 @@ const injectUserToViews = (req, res, next) => {
 export {
     checkCredentials,
     isLoggedIn,
-    requireRoleApi,
     injectUserToViews,
     verifyToken,
-    requireRoleApi
+    requireRoleApi,
+    requireRole
 };

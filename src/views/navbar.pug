@@ -5,8 +5,9 @@ nav.navcontainer
         div.center
             a(href="/tasks") Tareas
             a(href="/projects") Proyectos
-            a(href="/evaluations") Correcciones
+            a(href="/evaluations") Evaluaciones
         div.right
+<<<<<<< HEAD
             a(href="/users") Usuario
 
         button.hamburger(aria-label="Abrir menú" aria-expanded="false")
@@ -38,3 +39,10 @@ script.
             });
         });
     }
+=======
+        if user
+            span ¡Hola, #{user.name}!
+            a(href="/logout") Cerrar sesión
+        else
+            a(href="/login") Login
+>>>>>>> origin/dev
