@@ -1,14 +1,21 @@
 nav.navcontainer
     block navbar
         div.left 
-            a(href="/") Inicio
-        div.center
-            a(href="/tasks") Tareas
-            a(href="/projects") Proyectos
-            a(href="/evaluations") Evaluaciones
-        div.right
+            a(href="/") Rubrika
+        
         if user
-            span ¡Hola, #{user.name}!
-            a(href="/logout") (Cerrar sesión)
+            div.center
+                a(href="/") Inicio
+                a(href="/tasks") Tareas
+                a(href="/projects") Proyectos
+                a(href="/evaluations") Evaluaciones
+            
+            div.right
+                span ¡Hola, #{user.name}!
+                a(href="/logout") (Cerrar sesión)
         else
-            a(href="/login") Usuario
+            div.center
+            
+            div.right
+                a(href="/login") Iniciar sesión
+                a(href="/login/register" style="margin-left: 8px;") Registrarse

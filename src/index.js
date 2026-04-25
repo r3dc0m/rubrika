@@ -3,17 +3,15 @@ import dotenv from "dotenv";
 import apiRouter from "./routes/apiRouter.js";
 import viewRouter from "./routes/viewRouter.js";
 import { injectUserToViews } from "./middleweares/middlewareAuth.js";
-
 import { checkDB, syncDB } from "./config/db.js";
 import "./models/associations.js";
 import session from 'express-session';
-
 
 dotenv.config();
 const app = express();
 
 app.use(session({
-  secret: process.env.SESSION_SECRET,  // añadir a .env clave para firmar la cookie de sesión
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -25,8 +23,8 @@ app.use(session({
 
 app.use(injectUserToViews);
 
-app.set('view engine', 'pug'); //engine PUG 
-app.set('views', './src/views'); //donde están los PUG
+app.set('view engine', 'pug');
+app.set('views', './src/views');
 
 app.use(express.static('public'));
 
@@ -34,20 +32,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use((req, res, next) => {
-  console.log(`${req.method} ${req.path}`);  // ← LOG TODO
+  console.log(`${req.method} ${req.path}`);
   next();
 });
 
 app.get("/", (req, res) => {
-  res.render("layout", {
-    title: "Rubrika",
-    apiBase: "/api"
-  });
+  if (req.session.user) {
+    res.render("dashboard", { user: req.session.user });  
+  } else {
+    res.redirect("/login");  
+  }
 });
 
 app.use("/api", apiRouter);
-
-// app.use('/auth', viewAuthRoutes);
 app.use("/", viewRouter);
 
 async function startServer() {

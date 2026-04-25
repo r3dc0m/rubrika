@@ -1,0 +1,59 @@
+extends ../layout
+
+block content
+  .form-container
+    .form-card
+      if task
+        h1.form-title Editar Tarea
+      else
+        h1.form-title Nueva Tarea
+      
+      form(method='POST' action=task ? `/tasks/${task.task_id}/edit` : '/tasks/new')
+        .form-group
+          label(for='task_name') Nombre de la tarea *
+          input#task_name(
+            type='text' 
+            name='task_name' 
+            value=task ? task.task_name : ''
+            required
+            placeholder='API REST con Node.js y Express'
+          )
+        
+        .form-group
+          label(for='when_created') Fecha de creación *
+          input#when_created(
+            type='date' 
+            name='when_created'
+            value=task ? task.when_created : ''
+            required
+          )
+        
+        .form-group
+          label(for='due_date') Fecha de entrega *
+          input#due_date(
+            type='date' 
+            name='due_date'
+            value=task ? task.due_date : ''
+            required
+          )
+        
+        .form-group
+          label(for='ponderation') Ponderación (%) *
+          input#ponderation(
+            type='number' 
+            name='ponderation'
+            min='0'
+            max='100'
+            value=task ? task.ponderation : ''
+            required
+            placeholder='35'
+          )
+        
+        .form-group
+          label(for='eval_available') Evaluación disponible
+          select#eval_available(name='eval_available')
+            option(value='true' selected=task && task.eval_available) Sí
+            option(value='false' selected=task && !task.eval_available) No
+        
+        button.btn.btn-primary(type='submit')= task ? 'Actualizar Tarea' : 'Crear Tarea'
+        a.btn.btn-secondary(href='/tasks' style='margin-top: 0.5rem;') Cancelar

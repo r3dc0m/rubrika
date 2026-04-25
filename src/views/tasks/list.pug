@@ -1,27 +1,49 @@
 extends ../layout
 
 block content
-    h1 Lista de tareas
-
-    if tasks.length === 0
-        p No hay tareas registradas.
-    else
-        table
-            thead
-                tr
-                    th ID
-                    th Nombre
-                    th Fecha de creación
-                    th Fecha de entrega
-                    th Ponderación
-                    th Evaluación disponible
-            tbody
-                each task in tasks
-                    tr
-                        td= task.task_id
-                        td 
-                            a(href=`/tasks/${task.task_id}`)=task.task_name 
-                        td= task.when_created
-                        td= task.due_date
-                        td= task.ponderation + '%'
-                        td= task.eval_available ? 'Si' : 'No'
+  h1 Lista de tareas
+  
+  //- Solo profesores ven el botón de crear
+  if user && user.role === 'profesor'
+    a.btn.btn-primary(href='/tasks/new' style='margin-bottom: 1rem; width: auto; display: inline-block;') + Nueva Tarea
+  
+  //- Mensaje de éxito
+  if message
+    .alert.alert-info(style='margin-bottom: 1rem;')= message
+  
+  //- Mensaje de error
+  if error
+    .form-error(style='margin-bottom: 1rem;')= error
+  
+  table
+    thead
+      tr
+        th ID
+        th Nombre
+        th Fecha de creación
+        th Fecha de entrega
+        th Ponderación
+        th Evaluación disponible
+        if user && user.role === 'profesor'
+          th Acciones
+    tbody
+      each task in tasks
+        tr
+          td= task.task_id
+          td= task.task_name
+          td= task.when_created
+          td= task.due_date
+          td= task.ponderation + '%'
+          td= task.eval_available ? 'Sí' : 'No'
+          
+          if user && user.role === 'profesor'
+            td.actions-cell
+              a.btn.btn-small.btn-secondary(href=`/tasks/${task.task_id}/edit`) Editar
+              
+              form(
+                method='POST' 
+                action=`/tasks/${task.task_id}/delete` 
+                style='display:inline;'
+                onsubmit="return confirm('¿Seguro que quieres borrar esta tarea?')"
+              )
+                button.btn.btn-small.btn-danger(type='submit') Borrar
