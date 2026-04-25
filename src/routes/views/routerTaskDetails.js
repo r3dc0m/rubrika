@@ -1,6 +1,6 @@
 import { Router } from "express";
 import viewController from "../../controllers/views/controllerViewTaskDetails.js";
-import { requireRole, isLoggedIn } from "../../middleweares/middlewareAuth.js";
+import { isLoggedIn } from "../../middleweares/middlewareAuth.js";
 
 const routerGetTaskDetails = Router();
 

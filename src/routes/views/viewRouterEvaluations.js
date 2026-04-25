@@ -2,14 +2,14 @@ import { Router } from "express";
 import evaluationViewController from "../../controllers/views/controllerEvaluationsViews.js";
 import evaluationModel from "../../models/modelEvaluations.js";
 import evaluationsCriteriaModel from "../../models/modelEvaluationsCriteria.js";
-import { requireRoleApi, isLoggedIn } from "../../middleweares/middlewareAuth.js";
+import { requireRoleView, isLoggedIn } from "../../middleweares/middlewareAuth.js";
 
 const viewRouterEvaluations = Router();
 
 viewRouterEvaluations.get("/", isLoggedIn, evaluationViewController.getAllEvaluationsView);
 viewRouterEvaluations.get("/new", isLoggedIn, evaluationViewController.renderCreateForm);
 viewRouterEvaluations.get("/:id/edit", isLoggedIn, evaluationViewController.renderEditForm);
-viewRouterEvaluations.get("/:id", requireRoleApi('profesor'), evaluationViewController.getevaluationByIdView);
+viewRouterEvaluations.get("/:id", requireRoleView('profesor'), evaluationViewController.getevaluationByIdView);
 
 viewRouterEvaluations.post("/create", isLoggedIn, async (req, res) => {
     try {
