@@ -2,7 +2,7 @@
 
 > Plataforma web de evaluación educativa diseñada para que el profesorado gestione tareas, defina criterios de evaluación y califique proyectos de forma estructurada y transparente.
 
-**Equipo:** Olatz González · r3dc0m  
+**Equipo:** Montse García · Gabriela Guillén · Olatz González · Jonathan Vélez
 **Módulo:** Node.js — Proyecto Grupal de Backend · Bootcamp Full Stack  
 **Repositorio:** [github.com/r3dc0m/rubrika](https://github.com/r3dc0m/rubrika)
 
@@ -279,9 +279,9 @@ Abre `http://localhost:8080` con las credenciales del `.env` y conecta el servid
 
 ## Equipo
 
-**Montse García** —
+**Montse García** — https://github.com/Montse-gj/
 **Olatz González** — https://github.com/olatzglez
-**Saray Guillén** — 
+**Saray Guillén** — https://github.com/saragaby314
 **Jonathan Vélez** — https://github.com/r3dc0m
 
 Proyecto Grupal de Backend · Bootcamp Full Stack · 2026
