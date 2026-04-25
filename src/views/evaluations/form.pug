@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+  div.container
+    h1= title
+    
+    form(method="POST" action=evaluation ? `/evaluations/${evaluation.evaluation_id}/update` : '/evaluations/create')
+      
+      div.form-group
+        label(for="project_id") Proyecto:
+        select#project_id(name="project_id" required)
+          option(value="" disabled selected) -- Selecciona un proyecto --
+          each project in projects
+            option(
+              value=project.project_id
+              selected=evaluation && evaluation.project_id === project.project_id
+            )= project.project_name
+      
+      div.form-group
+        label(for="general_comment") Comentario general:
+        textarea#general_comment(name="general_comment" rows="4")= evaluation ? evaluation.general_comment : ''
+      
+      h3 Puntuaciones por criterio (1-5):
+      
+      each criterion in criteria
+        div.form-group
+          label(for=`criteria_${criterion.criteria_id}`)= criterion.criteria_name
+          input(
+            type="number"
+            id=`criteria_${criterion.criteria_id}`
+            name=`criteria_scores[${criterion.criteria_id}]`
+            min="1"
+            max="5"
+            value=criteriaScores[criterion.criteria_id] || ''
+            required
+          )
+      
+      div.form-actions
+        button(type="submit" class="btn-primary")= evaluation ? 'Actualizar' : 'Crear'
+        a(href="/evaluations" class="btn-secondary") Cancelar
