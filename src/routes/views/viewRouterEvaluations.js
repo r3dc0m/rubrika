@@ -2,18 +2,19 @@ import { Router } from "express";
 import evaluationViewController from "../../controllers/views/controllerEvaluationsViews.js";
 import evaluationModel from "../../models/modelEvaluations.js";
 import evaluationsCriteriaModel from "../../models/modelEvaluationsCriteria.js";
+import { requireRoleApi, isLoggedIn } from "../../middleweares/middlewareAuth.js";
 
 const viewRouterEvaluations = Router();
 
-viewRouterEvaluations.get("/", evaluationViewController.getAllEvaluationsView);
-viewRouterEvaluations.get("/new", evaluationViewController.renderCreateForm);
-viewRouterEvaluations.get("/:id/edit", evaluationViewController.renderEditForm);
-viewRouterEvaluations.get("/:id", evaluationViewController.getevaluationByIdView);
+viewRouterEvaluations.get("/", isLoggedIn, evaluationViewController.getAllEvaluationsView);
+viewRouterEvaluations.get("/new", isLoggedIn, evaluationViewController.renderCreateForm);
+viewRouterEvaluations.get("/:id/edit", isLoggedIn, evaluationViewController.renderEditForm);
+viewRouterEvaluations.get("/:id", requireRoleApi('profesor'), evaluationViewController.getevaluationByIdView);
 
-viewRouterEvaluations.post("/create", async (req, res) => {
+viewRouterEvaluations.post("/create", isLoggedIn, async (req, res) => {
     try {
         const { project_id, general_comment, criteria_scores } = req.body;
-        const user_id = 1; 
+        const user_id = req.session.user.id || 1;
         
         const newEvaluation = await evaluationModel.create({
             user_id,
@@ -38,7 +39,7 @@ viewRouterEvaluations.post("/create", async (req, res) => {
     }
 });
 
-viewRouterEvaluations.post("/:id/update", async (req, res) => {
+viewRouterEvaluations.post("/:id/update", isLoggedIn, async (req, res) => {
     try {
         const id = parseInt(req.params.id);
         const { project_id, general_comment, criteria_scores } = req.body;
@@ -73,7 +74,7 @@ viewRouterEvaluations.post("/:id/update", async (req, res) => {
     }
 });
 
-viewRouterEvaluations.post("/:id/delete", async (req, res) => {
+viewRouterEvaluations.post("/:id/delete", isLoggedIn, async (req, res) => {
     try {
         const id = parseInt(req.params.id);
         const evaluation = await evaluationModel.findByPk(id);
