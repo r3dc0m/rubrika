@@ -30,7 +30,7 @@ export async function checkDB() {
 
 export async function syncDB(){
     try {
-        await sequelize.sync({ alter: true })
+        await sequelize.sync({ alter: false })
         console.log("base de datos sincronizada")
     } catch (error) {
         console.error("no se ha podido sincronizar",error);
