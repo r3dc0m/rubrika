@@ -8,8 +8,8 @@ import routerTaskCriteria from "./api/routerTaskCriteria.js";
 import routerTasks from "./api/routerTasks.js";
 import routerUser from "./api/routerUser.js";
 import routerUserProjects from "./api/routerUserProjects.js";
-import routerAuth from "./api/routerAuth.js";
 import routerGetTaskDetails from "./views/routerTaskDetails.js"
+import routerAuth from "./api/routerAuth.js";
 
 const router = Router();
 

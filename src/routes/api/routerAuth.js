@@ -22,5 +22,4 @@ router.get('/me', (req, res) => {
 });
 
 
-
 export default router;

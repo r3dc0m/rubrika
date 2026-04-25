@@ -1,0 +1,68 @@
+extends ../layout
+
+block content
+    .form-container 
+        h2 Registrarse
+        
+        form(method="POST" action="/login/register")
+            .form-group
+                label(for='name') Nombre
+                input#name(
+                    type='text', 
+                    name='name', 
+                    required, 
+                    placeholder='Elsa',
+                    value=formData && formData.name ? formData.name : ''
+                    min-length='2'
+                    max-length='50'
+                )
+                span.field-error(role='alert') #{errors && errors.name ? errors.name : ''}
+
+            .form-group
+                label(for='email') Correo electrónico
+                    span.required *
+                input#email(
+                    type='email'
+                    name='email'
+                    placeholder='correo@correo.com'
+                    value=formData && formData.email ? formData.email : ''
+                    autocomplete='email'
+                )
+                span.field-error(role='alert') #{errors && errors.email ? errors.email : ''}
+
+            .form-group
+                label(for='password') Contraseña
+                    span.required *
+                .input-password-wrapper
+                    input#password(
+                        type='password'
+                        name='password'
+                        placeholder='Contraseña segura'
+                        min-length='8'
+                    )
+                    span.field-hint
+                        | Usa al menos 8 caracteres, una mayúscula, un número y un símbolo.
+                    span.field-error(role='alert') #{errors && errors.password ? errors.password : ''}
+
+            .form-group
+                label(for='confirmPassword') Repetir contraseña
+                    span.required *
+                .input-password-wrapper
+                    input#confirmPassword(
+                        type='password'
+                        name='confirmPassword'
+                        placeholder='Repetir contraseña'
+                        required
+                        minlength='8'
+                    )
+                    span.field-error(role='alert') #{errors && errors.confirmPassword ? errors.confirmPassword : ''}
+
+            if errors && errors.general
+                .form-error(role='alert') #{errors.general}
+
+            button.btn.btn-primary(type='submit') Registrarse
+
+        .form-card
+            span.form-title
+                | ¿Ya tienes una cuenta?
+                a(href="/login") Conéctate
