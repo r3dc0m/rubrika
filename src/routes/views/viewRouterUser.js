@@ -1,13 +1,14 @@
 import { Router } from "express";
 import userViewsController from "../../controllers/views/controllerUserViews.js";
-import { requireRole, isLoggedIn } from "../../middleweares/middlewareAuth.js";
+import { isLoggedIn } from "../../middleweares/middlewareAuth.js";
+import { requireRoleView } from '../../middleweares/middlewareAuth.js';
 
 const viewRouterUser = Router();
 
-viewRouterUser.get("/", requireRole('profesor'), userViewsController.getAllUsersView);
+viewRouterUser.get("/", requireRoleView('profesor'), userViewsController.getAllUsersView);
 
-viewRouterUser.get("/create", requireRole('profesor'), userViewsController.createUserForm);
-viewRouterUser.post("/create", requireRole('profesor'), userViewsController.createUser);
+viewRouterUser.get("/create", requireRoleView('profesor'), userViewsController.createUserForm);
+viewRouterUser.post("/create", requireRoleView('profesor'), userViewsController.createUser);
 
 viewRouterUser.get("/:id/edit", isLoggedIn, async (req, res, next) => {
     const userId = parseInt(req.params.id);
@@ -49,7 +50,7 @@ viewRouterUser.post("/:id/edit", isLoggedIn, async (req, res, next) => {
     res.status(403).render('error', { message: 'No tienes permiso' });
 }, userViewsController.updateUser);
 
-viewRouterUser.post("/:id/delete", requireRole('profesor'), userViewsController.deleteUser);
+viewRouterUser.post("/:id/delete", requireRoleView('profesor'), userViewsController.deleteUser);
 
 viewRouterUser.get("/:id", isLoggedIn, async (req, res, next) => {
     const userId = parseInt(req.params.id);

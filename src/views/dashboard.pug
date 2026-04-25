@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    .dashboard-container
+        h1 Bienvenido, #{user.name}
+        
+        .dashboard-grid
+            .card
+                h3 Mis Tareas
+                p Ver todas las tareas asignadas
+                a(href="/tasks" class="btn btn-primary") Ir a Tareas
+            
+            .card
+                h3 Mis Proyectos
+                p Revisar proyectos en curso
+                a(href="/projects" class="btn btn-primary") Ir a Proyectos
+            
+            .card
+                h3 Evaluaciones
+                p Ver evaluaciones recibidas
+                a(href="/evaluations" class="btn btn-primary") Ir a Evaluaciones

@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { isLoggedIn, requireRoleApi } from "../middleweares/middlewareAuth.js";
 import viewRouterUser from "./views/viewRouterUser.js";
 import viewRouterProject from "./views/viewRouterProject.js";
 import viewRouterTasks from "./views/viewRouterTasks.js";
@@ -9,12 +10,12 @@ import { logout } from '../controllers/views/controllerAuthView.js';
 
 const router = Router();
 
-router.use("/users", viewRouterUser);
-router.use("/projects", viewRouterProject);
-router.use("/tasks", viewRouterTasks);
-router.use("/evaluations", viewRouterEvaluations);
-router.use("/criteria", viewRouterCriteria);
-router.use("/login", viewAuthRoutes); 
-router.get('/logout', logout);
+router.use("/login", viewAuthRoutes);
+router.get("/logout", logout);
+router.use("/users", isLoggedIn, requireRoleApi('profesor'), viewRouterUser);
+router.use("/projects", isLoggedIn, viewRouterProject);
+router.use("/tasks", isLoggedIn, viewRouterTasks);
+router.use("/evaluations", isLoggedIn, viewRouterEvaluations);
+router.use("/criteria", isLoggedIn, viewRouterCriteria);
 
 export default router;

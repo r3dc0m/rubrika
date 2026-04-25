@@ -1,21 +1,21 @@
-import { Router } from "express";
-import taskViewController from "../../controllers/views/controllerTasksViews.js";
-import { requireRole, isLoggedIn } from "../../middleweares/middlewareAuth.js";
+import express from 'express';
+import { 
+  getTasks, 
+  getCreateTaskForm, 
+  createTask,
+  getEditTaskForm,
+  updateTask,
+  deleteTask
+} from '../../controllers/views/controllerTasksViews.js';
+import { requireRoleView } from '../../middleweares/middlewareAuth.js';
 
-const viewRouterTask = Router();
+const router = express.Router();
 
-viewRouterTask.get("/", isLoggedIn, taskViewController.getAllTasksView);
+router.get('/', getTasks);
+router.get('/new', requireRoleView('profesor'), getCreateTaskForm);
+router.post('/new', requireRoleView('profesor'), createTask);
+router.get('/:id/edit', requireRoleView('profesor'), getEditTaskForm);
+router.post('/:id/edit', requireRoleView('profesor'), updateTask);
+router.post('/:id/delete', requireRoleView('profesor'), deleteTask);
 
-viewRouterTask.get("/:id", isLoggedIn, taskViewController.getTasksByIdView);
-
-// viewRouterTask.get("/create", requireRole('profesor'), taskViewController.showCreateTaskForm);
-// viewRouterTask.post("/create", requireRole('profesor'), taskViewController.createTask);
-
-// viewRouterTask.get("/edit/:id", requireRole('profesor'), taskViewController.showEditTaskForm);
-// viewRouterTask.post("/edit/:id", requireRole('profesor'), taskViewController.updateTask);
-
-// viewRouterTask.post("/delete/:id", requireRole('profesor'), taskViewController.deleteTask);
-
-// viewRouterTask.post("/:id/submit", requireRole('alumno'), taskViewController.submitTask);
-
-export default viewRouterTask;
+export default router;
