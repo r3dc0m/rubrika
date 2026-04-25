@@ -10,19 +10,6 @@ import session from 'express-session';
 
 dotenv.config();
 const app = express();
-<<<<<<< HEAD
-/*
-app.use(session({
-  secret: process.env.SESSION_SECRET,  // añadir a .env clave para firmar la cookie de sesión
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: false,
-    httpOnly: true,
-    maxAge: 24 * 60 * 60 * 1000
-  }
-}))*/
-=======
 
 // Configuración de sesión
 app.use(session({
@@ -35,7 +22,6 @@ app.use(session({
         maxAge: 24 * 60 * 60 * 1000
     }
 }));
->>>>>>> origin/dev
 
 app.use(injectUserToViews);
 
@@ -46,19 +32,6 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-<<<<<<< HEAD
-app.get("/", (req, res) => {
-  res.render("landing", {
-    title: "Rubrika",
-    apiBase: "/api"
-  });
-});
-
-// app.use("/api", apiRouter);
-
-// app.use('/auth', viewAuthRoutes);
-//app.use("/", viewRouter);
-=======
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.path}`);
     next();
@@ -86,23 +59,14 @@ app.get("/", (req, res) => {
 // Rutas de API y vistas
 app.use("/api", apiRouter);
 app.use("/", viewRouter);
->>>>>>> origin/dev
 
 // Iniciar servidor
 async function startServer() {
-<<<<<<< HEAD
-  await checkDB();
-  await syncDB();
-  app.listen(3000, '0.0.0.0', () => {
-      console.log('Servidor Rubrika en marcha en puerto 3000');
-  });
-=======
     await checkDB();
     await syncDB();
     app.listen(3000, () => {
         console.log('Servidor Rubrika en marcha en puerto 3000');
     });
->>>>>>> origin/dev
 }
 
 startServer();
