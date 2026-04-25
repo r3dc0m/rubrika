@@ -1,19 +1,60 @@
+@import url('./landing.css');
+@import url('./forms.css');
+
 :root {
-  --bg: #1e315d;
-  --bg2: #2a4c96;
-  --card: rgba(133, 155, 207, 0.72);
-  --line: rgba(144, 57, 57, 0.08);
-  --text: #e5e7eb;
-  --muted: #94a3b8;
-  --accent: #7c3aed;
-  --accent2: #22c55e;
-  --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  /* Colores base */
+  --bg:           #F4F5F9;
+  --bg2:          #FFFFFF;
+  --card:         #FFFFFF;
+  --border:       #6E7191;
+
+  /* Texto */
+  --text:         #2C3566; 
+  --text-light:   #6E7191; 
+  --muted:        #A0A3BD;
+
+  /* Marca principal */
+  --primary:      #6259CA;
+  --primary-dark: #4B44B0;
+  --primary-light:#EAE9F9;
+
+  /* Colores de acento */
+  --orange:       #FF9F43; 
+  --orange-light: #FFF3E0;
+  --red:          #FC2E53;
+  --red-light:    #FDEAEA;
+  --yellow:       #FFBB33;
+  --green:        #1DB954;  
+  --green-light:  #E6F9EE;
+
+  /* Sombras */
+  --shadow-sm:    0 2px 8px rgba(98, 89, 202, 0.08);
+  --shadow:       0 4px 20px rgba(98, 89, 202, 0.13);
+  --shadow-lg:    0 8px 32px rgba(98, 89, 202, 0.18);
+
+  /* Bordes */
+  --radius-sm:    8px;
+  --radius:       12px;
+  --radius-lg:    20px;
+
+  /* Tipografía */
+  --font:         Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size:    1rem;
+  --font-size-lg: 1.125rem;
+  --line-height:  1.6;
 }
 
-* {
+/* RESET Y BASE */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 html, body {
@@ -21,61 +62,86 @@ html, body {
 }
 
 body {
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font);
+  font-size: var(--font-size);
   color: var(--text);
-  background:
-    radial-gradient(circle at top left, rgba(124, 58, 237, 0.22), transparent 30%),
-    radial-gradient(circle at top right, rgba(34, 197, 94, 0.14), transparent 25%),
-    linear-gradient(135deg, var(--bg), var(--bg2));
-  background-attachment: fixed;
-  line-height: 1.5;
+  background-color: var(--bg);
+  line-height: var(--line-height);
 }
 
-/* Header */
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* Focus visible para accesibilidad */
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/*
+   HEADER */
 header {
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: 18px 24px;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  background: rgba(15, 23, 42, 0.55);
-  border-bottom: 1px solid var(--line);
+  padding: 0 24px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 
-/* Nav */
+section {
+  align-items: center;
+  gap: 3rem;
+  padding: 6rem 5% 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* NAV */
 .navcontainer {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  gap: 16px;
   justify-content: space-between;
-  padding: 14px 18px;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: var(--shadow);
+  gap: 16px;
+  padding: 14px 0;
 }
 
 .navcontainer a {
-  color: var(--text);
+  color: var(--text-light);
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
-  padding: 10px 14px;
-  border-radius: 12px;
-  transition: all 0.25s ease;
+  font-size: var(--font-size-sm);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
 }
 
 .navcontainer a:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-1px);
+  background: var(--primary-light);
+  color: var(--primary);
+  text-decoration: none;
 }
 
 .navcontainer .center {
   display: flex;
-  gap: 8px;
+  gap: 4px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -89,7 +155,7 @@ header {
   text-align: right;
 }
 
-/* Main */
+/* MAIN / LAYOUT */
 #app {
   max-width: 1200px;
   margin: 40px auto;
@@ -97,37 +163,130 @@ header {
 }
 
 #app h1 {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  letter-spacing: -0.04em;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text);
   margin-bottom: 24px;
 }
 
 /* Content card */
 #content {
   background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: 28px;
   box-shadow: var(--shadow);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
 }
 
 #content p {
-  color: var(--muted);
-  font-size: 1.05rem;
+  color: var(--text-light);
+  font-size: var(--font-size-lg);
 }
 
-/* Responsive */
+/* ================================
+   HAMBURGER MENU
+   ================================ */
+
+/* Botón hamburguesa — oculto por defecto */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s ease;
+  z-index: 200;
+}
+
+.hamburger:hover {
+  background: var(--primary-light);
+}
+
+.hamburger:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* Las tres líneas del icono */
+.hamburger__line {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+  transform-origin: center;
+}
+
+/* Estado abierto: cruz */
+.hamburger.is-open .hamburger__line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.is-open .hamburger__line:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+.hamburger.is-open .hamburger__line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Menú mobile — panel desplegable */
+.nav-mobile {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 16px 16px;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 150;
+  box-shadow: var(--shadow);
+  animation: slideDown 0.2s ease;
+}
+
+.nav-mobile.is-open {
+  display: flex;
+}
+
+.nav-mobile a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.nav-mobile a:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  text-decoration: none;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
 @media (max-width: 768px) {
   header {
-    padding: 12px;
-  }
-
-  .navcontainer {
-    flex-direction: column;
-    align-items: stretch;
-    text-align: center;
+    padding: 0 12px;
   }
 
   .navcontainer .left,
@@ -147,6 +306,33 @@ header {
 
   #content {
     padding: 20px;
-    border-radius: 18px;
+    border-radius: var(--radius);
+  }
+
+  section.hero {
+    padding: 2rem 1rem;
+  }
+}
+
+/* Hamburguesa activa en pantallas <= 480px */
+@media (max-width: 480px) {
+  header {
+    position: relative; /* necesario para el panel absoluto */
+  }
+
+  /* Ocultar el nav de escritorio */
+  .navcontainer .center,
+  .navcontainer .right {
+    display: none;
+  }
+
+  /* Mostrar el botón hamburguesa */
+  .hamburger {
+    display: flex;
+  }
+
+  /* El logo se queda a la izquierda, el hamburger a la derecha */
+  .navcontainer {
+    justify-content: space-between;
   }
 }

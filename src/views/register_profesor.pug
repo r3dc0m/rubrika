@@ -1,5 +1,8 @@
 extends ../layout
 
+block styles
+    link(rel="stylesheet", href="/forms.css")
+
 block content
     .form-container 
         .form-card
@@ -118,7 +121,7 @@ block content
             .form-error(role='alert') #{errors.general} 
 
         // Botón de envío
-        button.btn.butn-primary(type='submit') Registrarse
+        button.btn.btn-primary(type='submit') Registrarse
 
         // Botón de cancelar
-        button.btn.butn-primary(type='submit') Cancelar
+        button.btn.btn-primary(type='submit') Cancelar

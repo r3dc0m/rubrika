@@ -1,0 +1,159 @@
+extends layout
+
+block styles
+    link(rel="stylesheet", href="/landing.css")
+
+block content
+
+  // HERO
+  section.hero
+    .hero-content
+      span.hero-tag Evaluación educativa inteligente
+      h2
+        | Evalúa proyectos
+        br
+        em con criterio y claridad
+      p.hero-description
+        | Rubrika es una plataforma diseñada para que profesores gestionen tareas, 
+        | definan criterios de evaluación y califiquen proyectos de forma estructurada y transparente.
+      .hero-stats
+        .stat-item
+          span.stat-number 2 roles:
+          span.stat-label Profesorado y alumnado
+        .stat-item
+          span.stat-number PROFESOR/A: Corrige de manera fácil 
+          span.stat-label Simplifica el proceso de evaluación
+        .stat-item
+          span.stat-number ALUMN@: Entrega fácil de tareas
+          span.stat-label Simplifica la entrega de trabajos
+
+    .hero-visual
+      .dashboard-card
+        .card-header
+          div
+            p.card-title Tarea: Proyecto Final
+            p.card-subtitle Fecha límite: 30 jun 2026
+        .progress-bar
+          .progress-fill.orange(style='width: 72%')
+        p.progress-label 72% evaluado
+
+      .dashboard-card
+        .card-header
+          div
+            p.card-title Criterios activos
+            p.card-subtitle Diseño, Funcionalidad, Documentación
+        .criteria-list
+          span.criteria-tag Diseño UI
+          span.criteria-tag Funcionalidad
+          span.criteria-tag Documentación
+          span.criteria-tag Testing
+
+      .dashboard-card
+        .card-header
+          div
+            p.card-title Grupo: FULL STACK FEB 2026
+            p.card-subtitle 16 alumnos · 3 proyectos
+        .progress-bar
+          .progress-fill.blue(style='width: 55%')
+        p.progress-label 5 de 9 evaluados
+
+  // FUNCIONALIDADES
+  section#funcionalidades.features
+    .section-header
+      span.section-tag ¿Qué puedes hacer con Rubrika?
+      h3 Todo lo que necesitas para evaluar
+
+    .features-grid
+
+      .feature-card
+        h4 Gestión de tareas
+        p
+          | Crea tareas con nombre, fecha de entrega y ponderación. 
+          | Activa o desactiva la evaluación cuando lo necesites.
+
+      .feature-card
+        h4 Criterios de evaluación
+        p
+          | Define criterios personalizados para cada tarea. 
+          | Asigna pesos específicos a cada criterio para una nota justa.
+
+      .feature-card
+        h4 Gestión de proyectos
+        p
+          | Asocia proyectos a tareas e incluye el enlace al repositorio. 
+          | Cada alumno o grupo tiene su propio proyecto.
+
+      .feature-card
+        h4 Evaluaciones detalladas
+        p
+          | Evalúa cada proyecto criterio a criterio. 
+          | Añade comentarios generales y puntuaciones individuales.
+
+      .feature-card
+        h4 Profesorado
+        p
+          | Los profesores crean tareas, definen criterios, 
+          | gestionan proyectos y realizan evaluaciones completas.
+
+      .feature-card
+        h4 Alumnado
+        p
+          | Los alumnos consultan sus evaluaciones, 
+          | ven sus notas por criterio y acceden a los comentarios del profesor.
+
+  // CÓMO FUNCIONA
+  section#como-funciona.how-it-works
+    .section-header
+      span.section-tag Proceso
+      h2 Evalúa en 4 pasos
+
+    .steps
+      .step
+        span.step-number 01
+        h3 Crea una tarea
+        p Define el nombre, fecha límite y ponderación de la tarea.
+
+      .step
+        span.step-number 02
+        h3 Añade criterios
+        p Configura los criterios de evaluación y su peso específico.
+
+      .step
+        span.step-number 03
+        h3 Asocia proyectos
+        p Vincula los proyectos de los alumnos a la tarea correspondiente.
+
+      .step
+        span.step-number 04
+        h3 Evalúa y comenta
+        p Puntúa cada criterio y añade comentarios personalizados.
+
+  // USUARIOS
+  section#usuarios.users-section
+    .section-header
+      span.section-tag Para quién es Rubrika
+      h2 Dos perfiles, una plataforma
+
+    .users-grid
+
+      .user-card.user-card--profesor
+        h3 Profesor
+        ul
+          li Crear y gestionar tareas
+          li Definir criterios de evaluación
+          li Evaluar proyectos
+          li Ver historial de evaluaciones
+
+      .user-card.user-card--alumno
+        h3 Alumno
+        ul
+          li Consultar sus proyectos
+          li Ver evaluaciones recibidas
+          li Acceder a comentarios
+          li Seguir su progreso
+
+  // FOOTER
+  footer.footer
+    .footer-content
+      p.footer-copy © 2025 Rubrika. Plataforma de evaluación educativa.
+      p.footer-info Hecho con cariño, esfuerzo e IA. <3

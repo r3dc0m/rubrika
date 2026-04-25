@@ -1,0 +1,253 @@
+/* CONTENEDOR */
+.form-container {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: var(--bg);
+}
+
+.form-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-title {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text);           
+  letter-spacing: -0.03em;
+  margin-bottom: 0.25rem;
+}
+
+.form-subtitle {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--text-light);      
+  margin-bottom: 1.5rem;
+}
+
+.form-subtitle a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.form-subtitle a:hover {
+  text-decoration: underline;
+}
+
+/* FORMULARIO */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text);    
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: var(--font-size);
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.form-group input::placeholder {
+  color: var(--muted);
+}
+
+.form-group input[aria-invalid="true"],
+.form-group input:invalid:not(:placeholder-shown) {
+  border-color: var(--red);
+}
+
+/* CHECKBOX */
+.form-group--checkbox {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  accent-color: var(--primary);
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.checkmark {
+  display: none;
+}
+
+.checkbox-text {
+  font-size: var(--font-size-sm);
+  color: var(--text-light);
+}
+
+.checkbox-text a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* CAMPOS AUXILIARES */
+.input-password-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field-hint {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.field-error {
+  font-size: 0.78rem;
+  color: var(--red);           
+  font-weight: 500;
+  min-height: 1rem;
+}
+
+.form-error {
+  background: var(--red-light);
+  border: 1px solid var(--red);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  font-size: var(--font-size-sm);
+  color: var(--red);               
+  font-weight: 500;
+}
+
+.forgot-password {
+  font-size: var(--font-size-sm);
+  color: var(--primary);
+  font-weight: 600;
+  text-align: right;
+  align-self: flex-end;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.forgot-password:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+.required {
+  color: var(--red);
+  margin-left: 2px;
+  font-weight: 700;
+  aria-hidden: true;
+}
+
+/* BOTONES */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-size: var(--font-size);
+  font-family: var(--font);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  width: 100%;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #FFFFFF;              
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  box-shadow: var(--shadow);
+}
+
+.btn-primary:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* Botón secundario (cancelar) */
+.btn + .btn {
+  background: transparent;
+  color: var(--text-light);   
+  border: 1.5px solid var(--border);
+  margin-top: 0.5rem;
+  box-shadow: none;
+}
+
+.btn + .btn:hover {
+  background: var(--bg);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .form-card {
+    padding: 1.75rem 1.25rem;
+    border-radius: var(--radius);
+  }
+
+  .form-title {
+    font-size: 1.3rem;
+  }
+}

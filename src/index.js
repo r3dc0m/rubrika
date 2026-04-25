@@ -10,7 +10,7 @@ import session from 'express-session';
 
 dotenv.config();
 const app = express();
-
+/*
 app.use(session({
   secret: process.env.SESSION_SECRET,  // añadir a .env clave para firmar la cookie de sesión
   resave: false,
@@ -20,7 +20,7 @@ app.use(session({
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000
   }
-}))
+}))*/
 
 app.set('view engine', 'pug'); //engine PUG 
 app.set('views', './src/views'); //donde están los PUG
@@ -31,22 +31,22 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.render("layout", {
+  res.render("landing", {
     title: "Rubrika",
     apiBase: "/api"
   });
 });
 
-app.use("/api", apiRouter);
+// app.use("/api", apiRouter);
 
 // app.use('/auth', viewAuthRoutes);
-app.use("/", viewRouter);
+//app.use("/", viewRouter);
 
 async function startServer() {
   await checkDB();
   await syncDB();
-  app.listen(3000, () => {
-    console.log('Servidor Rubrika en marcha en puerto 3000');
+  app.listen(3000, '0.0.0.0', () => {
+      console.log('Servidor Rubrika en marcha en puerto 3000');
   });
 }
 
