@@ -1,14 +1,53 @@
 nav.navcontainer
     block navbar
-        div.left 
+        div.left
             a(href="/") Inicio
         div.center
             a(href="/tasks") Tareas
             a(href="/projects") Proyectos
             a(href="/evaluations") Evaluaciones
         div.right
-        if user
-            span ¡Hola, #{user.name}!
-            a(href="/logout") Cerrar sesión
-        else
-            a(href="/login") Login
+            if user
+                span ¡Hola, #{user.name}!
+                a(href="/users") Usuarios
+                a(href="/logout") Cerrar sesión
+            else
+                a(href="/login") Login
+
+        button.hamburger(aria-label="Abrir menú" aria-expanded="false")
+            span.hamburger__line
+            span.hamburger__line
+            span.hamburger__line
+
+//- Panel de navegación mobile
+nav.nav-mobile
+    if user
+        a(href="/tasks") Tareas
+        a(href="/projects") Proyectos
+        a(href="/evaluations") Evaluaciones
+        a(href="/users") Usuarios
+        a(href="/logout") Cerrar sesión
+        span.user-info ¡Hola, #{user.name}!
+    else
+        a(href="/tasks") Tareas
+        a(href="/projects") Proyectos
+        a(href="/evaluations") Evaluaciones
+        a(href="/login") Login
+
+script.
+    const btn = document.querySelector('.hamburger');
+    const menu = document.querySelector('.nav-mobile');
+    if (btn && menu) {
+        btn.addEventListener('click', () => {
+            const open = btn.classList.toggle('is-open');
+            menu.classList.toggle('is-open');
+            btn.setAttribute('aria-expanded', open);
+        });
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                btn.classList.remove('is-open');
+                menu.classList.remove('is-open');
+                btn.setAttribute('aria-expanded', false);
+            });
+        });
+    }
