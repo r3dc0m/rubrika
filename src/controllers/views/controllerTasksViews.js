@@ -22,6 +22,7 @@ export const getTasks = async (req, res) => {
     res.status(500).send('Error al obtener tareas');
   }
 };
+
 export const getCreateTaskForm = (req, res) => {
   res.render('tasks/form', { 
     task: null, 
@@ -31,16 +32,14 @@ export const getCreateTaskForm = (req, res) => {
 
 export const createTask = async (req, res) => {
   try {
-    const { name, description, creation_date, due_date, weight, project_id } = req.body;
+    const { task_name, when_created, due_date, ponderation, eval_available } = req.body;
     
     await Task.create({
-      name,
-      description,
-      creation_date,
+      task_name,
+      when_created,
       due_date,
-      weight,
-      evaluation_available: false,
-      project_id
+      ponderation: parseInt(ponderation),
+      eval_available: eval_available === 'true'
     });
     
     res.redirect('/tasks?message=Tarea creada exitosamente');
@@ -72,10 +71,16 @@ export const getEditTaskForm = async (req, res) => {
 export const updateTask = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, creation_date, due_date, weight, project_id } = req.body;
+    const { task_name, when_created, due_date, ponderation, eval_available } = req.body;
     
     await Task.update(
-      { name, description, creation_date, due_date, weight, project_id },
+      { 
+        task_name, 
+        when_created, 
+        due_date, 
+        ponderation: parseInt(ponderation), 
+        eval_available: eval_available === 'true' 
+      },
       { where: { task_id: id } }
     );
     
@@ -90,13 +95,19 @@ export const deleteTask = async (req, res) => {
   try {
     const { id } = req.params;
     
-    // Verificar si tiene evaluaciones
-    const evaluations = await Evaluation.count({ where: { task_id: id } });
+    const projects = await Project.findAll({ where: { task_id: id } });
     
-    if (evaluations > 0) {
-      return res.redirect(
-        `/tasks?error=No se puede borrar. Tiene ${evaluations} evaluaciones asociadas.`
-      );
+    if (projects.length > 0) {
+      const projectIds = projects.map(p => p.project_id);
+      const evaluationCount = await Evaluation.count({ 
+        where: { project_id: projectIds } 
+      });
+      
+      if (evaluationCount > 0) {
+        return res.redirect(
+          `/tasks?error=No se puede borrar. Tiene ${evaluationCount} evaluaciones asociadas.`
+        );
+      }
     }
     
     await Task.destroy({ where: { task_id: id } });
