@@ -2,7 +2,7 @@
 
 > Plataforma web de evaluación educativa diseñada para que el profesorado gestione tareas, defina criterios de evaluación y califique proyectos de forma estructurada y transparente.
 
-**Equipo:** Montse García · Gabriela Guillén · Olatz González · Jonathan Vélez
+**Equipo:** Montse García · Saray Guillen · Olatz González · Jonathan Vélez
 **Módulo:** Node.js — Proyecto Grupal de Backend · Bootcamp Full Stack  
 **Repositorio:** [github.com/r3dc0m/rubrika](https://github.com/r3dc0m/rubrika)
 
@@ -38,6 +38,8 @@ La aplicación está construida en Node.js + Express siguiendo el patrón **MVC*
 | `/auth/login` | Inicio de sesión |
 | `/auth/register/profesor` | Registro de profesorado |
 | `/tasks` | Listado de tareas |
+| `/tasks/new` | Crear nueva tarea (solo profesores) |
+| `/tasks/:id/edit` | Editar tarea existente (solo profesores) |
 | `/projects` | Listado de proyectos |
 | `/evaluations` | Listado de evaluaciones |
 | `/users` | Gestión de usuarios |
@@ -55,7 +57,6 @@ La aplicación está construida en Node.js + Express siguiendo el patrón **MVC*
 | PostgreSQL 16 | Base de datos relacional |
 | Pug | Motor de plantillas HTML |
 | bcrypt | Hash de contraseñas |
-| jsonwebtoken | Generación de tokens JWT |
 | express-session | Gestión de sesiones |
 | Docker + Docker Compose | Contenedores de BD y pgAdmin |
 | pgAdmin 4 | Administración de la base de datos |
@@ -248,6 +249,7 @@ Abre `http://localhost:8080` con las credenciales del `.env` y conecta el servid
 | `dev` | Integración de todas las funcionalidades |
 | `feature/forms` | Formularios de registro y login |
 | `feature/tasks-views` | Vistas de tareas |
+| `feature/crud-tareas` | CRUD completo de tareas con permisos por rol |
 | `views` | Vistas generales de la aplicación |
 | `feature/sql-setup` | Configuración de la base de datos |
 | `styles` | Estilos CSS de la aplicación |
@@ -281,7 +283,7 @@ Abre `http://localhost:8080` con las credenciales del `.env` y conecta el servid
 
 **Montse García** — https://github.com/Montse-gj/
 **Olatz González** — https://github.com/olatzglez
-**Saray Guillén** — https://github.com/saragaby314
+**Saray Guillen** — https://github.com/saragaby314
 **Jonathan Vélez** — https://github.com/r3dc0m
 
 Proyecto Grupal de Backend · Bootcamp Full Stack · 2026
