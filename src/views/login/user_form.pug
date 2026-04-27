@@ -1,0 +1,18 @@
+extends ../layout
+
+block styles
+    link(rel="stylesheet")
+
+block content
+  .dashboard-container
+    .welcome-section
+      h1 Bienvenido, #{user.name}!
+      p Estás logueado correctamente.
+
+    .actions
+      form(method='POST' action='/logout')
+        button.btn.btn-danger(type='submit') Cerrar sesión
+
+    // Opcional: Más contenido del dashboard
+    .dashboard-content
+      p Aquí puedes agregar más secciones de tu app.

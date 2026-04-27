@@ -1,0 +1,21 @@
+nav.navcontainer
+    block navbar
+        div.left 
+            a(href="/") Rubrika
+        
+        if user
+            div.center
+                a(href="/") Inicio
+                a(href="/tasks") Tareas
+                a(href="/projects") Proyectos
+                a(href="/evaluations") Evaluaciones
+            
+            div.right
+                span ¡Hola, #{user.name}!
+                a(href="/logout") (Cerrar sesión)
+        else
+            div.center
+            
+            div.right
+                a(href="/login") Iniciar sesión
+                a(href="/login/register" style="margin-left: 8px;") Registrarse

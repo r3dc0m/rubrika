@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  h1 Tarea: #{task.task_name}
+  
+  p ID: #{task.task_id}
+  p Fecha de creación: #{task.when_created}
+  p Fecha de entrega: #{task.due_date}
+  p Ponderación: #{task.ponderation}%
+  p Evaluación disponible: #{task.eval_available ? 'Sí' : 'No'}
+  
+  a(href="/tasks") ← Volver a la lista de tareas

@@ -1,0 +1,35 @@
+services:
+
+  db:
+    image: postgres:16
+    container_name: rubrika
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+    ports:
+      - ${DB_PORT}:5432
+    restart: unless-stopped
+    networks:
+      - rubrika-network
+    volumes:
+      - ./db/data:/var/lib/postgresql/18/docker
+      - ./db/scripts:/docker-entrypoint-initdb.d
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: rubrika_pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    networks:
+      - rubrika-network
+    depends_on:
+      - db
+
+networks:
+  rubrika-network:
+    driver: bridge

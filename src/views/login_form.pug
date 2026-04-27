@@ -1,0 +1,38 @@
+extends ../layout
+
+block styles
+    link(rel="stylesheet", href="/forms.css")
+
+block content
+  .form-container 
+    h2 Conectarse
+    
+    if message
+      .alert.alert-info #{message}
+    
+    form(method='POST' action='/login')
+      //Correo
+      .form-group
+        label(for='email') Correo electrónico *
+        input#email(
+          type='email' name='email' 
+          placeholder='correo@correo.com' 
+          required autocomplete='email'
+        )
+
+      //Contraseña
+      .form-group
+        label(for='password') Contraseña *
+        .input-password-wrapper
+          input#password(
+            type='password' name='password'
+            placeholder='Contraseña'
+          )
+
+      button.btn.btn-primary(type='submit') Iniciar sesión
+    
+    // ← Form CERRADO aquí
+    
+    .form-card
+      | ¿No tienes cuenta? 
+      a(href="/login/register") Regístrate

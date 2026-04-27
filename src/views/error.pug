@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    .error-container
+        h1 Error #{error.status || 500}
+        p= message || 'Ha ocurrido un error inesperado'
+        
+        if error.stack && process.env.NODE_ENV === 'development'
+            pre.error-stack= error.stack
+        
+        a.btn(href="/") Volver al inicio
