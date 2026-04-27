@@ -1,9 +1,9 @@
-# Rubrika — Plataforma de evaluación educativa
+# Rubrika 
 
 > Plataforma web de evaluación educativa diseñada para que el profesorado gestione tareas, defina criterios de evaluación y califique proyectos de forma estructurada y transparente.
 
-**Equipo:** Montse García · Saray Guillen · Olatz González · Jonathan Vélez
-**Módulo:** Node.js — Proyecto Grupal de Backend · Bootcamp Full Stack  
+**Equipo:** Montse García · Saray Guillen · Olatz González · Jonathan Vélez 
+**Módulo:** Node.js — Proyecto Grupal de Backend · Bootcamp Full Stack 
 **Repositorio:** [github.com/r3dc0m/rubrika](https://github.com/r3dc0m/rubrika)
 
 ---
@@ -30,6 +30,64 @@ La aplicación está construida en Node.js + Express siguiendo el patrón **MVC*
 
 ---
 
+## Metodología de trabajo
+
+El equipo siguió una metodología **Scrum** adaptada, organizando el trabajo en sprints cortos con revisiones diarias informales para coordinar avances y resolver bloqueos.
+
+### Gestión de tareas con Jira
+
+El trabajo se organizó en **Jira** con un tablero Scrum dividido en cuatro áreas principales, una por cada miembro del equipo:
+
+| Área | Responsable | Tareas principales |
+|------|-------------|-------------------|
+| Configuración e interfaz general | Jonathan | Setup del proyecto, Docker, landing page, navbar, estilos CSS y diseño responsive |
+| Autenticación y seguridad | Montse | Registro, login, hash de contraseñas con bcrypt, sesiones con express-session y validaciones de formularios |
+| Tareas, evaluaciones y vistas | Saray | CRUD de tareas, vistas con Pug, middleware de autorización por roles y validaciones de integridad |
+| Base de datos y API | Olatz | Modelo de datos, relaciones entre tablas, API RESTful, endpoints y documentación técnica |
+
+El tablero Jira reflejaba en todo momento el estado de cada tarea:
+
+| Columna | Descripción |
+|---------|-------------|
+| **Backlog** | Tareas pendientes de planificar |
+| **To Do** | Tareas asignadas para el sprint activo |
+| **In Progress** | En desarrollo |
+| **In Review** | Pendiente de revisión via Pull Request |
+| **Done** | Completada y mergeada a `dev` |
+
+### Flujo de trabajo con Git
+
+Cada área de trabajo se desarrolló en su propia rama y se integró a `dev` mediante Pull Requests revisados antes de mergear:
+
+```
+main ← dev ← feature/nombre-funcionalidad
+```
+
+Las ramas principales del proyecto fueron:
+
+- `feature/forms` → autenticación y formularios
+- `feature/tasks-views` → vistas de tareas
+- `feature/crud-tareas` → CRUD completo con permisos
+- `feature/sql-setup` → configuración de base de datos
+- `styles` → estilos CSS y diseño
+
+---
+
+## Presentación
+
+La presentación del proyecto fue elaborada con **Canva**, siguiendo una estructura clara y visual para exponer las funcionalidades, la arquitectura y las decisiones técnicas del equipo.
+
+La presentación cubre los siguientes bloques:
+
+1. **Introducción** — Qué es Rubrika y qué problema resuelve
+2. **Autenticación y Seguridad** — Registro, login, bcrypt y sesiones
+3. **Tareas y Evaluaciones** — CRUD completo, roles, validaciones y vistas
+4. **Base de datos y Arquitectura** — Modelo de datos, relaciones y stack tecnológico
+5. **Retos técnicos** — Problemas encontrados y soluciones aplicadas
+6. **Conclusiones y mejoras futuras**
+
+---
+
 ## Páginas
 
 | Página | Descripción |
@@ -51,7 +109,7 @@ La aplicación está construida en Node.js + Express siguiendo el patrón **MVC*
 
 | Tecnología | Uso |
 |---|---|
-| Node.js v24 | Runtime del servidor |
+| Node.js v18 | Runtime del servidor |
 | Express 4 | Framework web |
 | Sequelize | ORM para PostgreSQL |
 | PostgreSQL 16 | Base de datos relacional |
@@ -61,6 +119,8 @@ La aplicación está construida en Node.js + Express siguiendo el patrón **MVC*
 | Docker + Docker Compose | Contenedores de BD y pgAdmin |
 | pgAdmin 4 | Administración de la base de datos |
 | nodemon | Servidor de desarrollo con recarga automática |
+| Jira | Gestión de tareas y metodología Scrum |
+| Canva | Elaboración de la presentación |
 
 ---
 
@@ -167,7 +227,6 @@ rubrika/
 ├── .env                               # Variables de entorno (no subir al repo)
 └── .gitignore
 ```
-
 
 ---
 
@@ -281,9 +340,9 @@ Abre `http://localhost:8080` con las credenciales del `.env` y conecta el servid
 
 ## Equipo
 
-**Montse García** — https://github.com/Montse-gj/
-**Olatz González** — https://github.com/olatzglez
-**Saray Guillen** — https://github.com/saragaby314
-**Jonathan Vélez** — https://github.com/r3dc0m
+**Montse García** — https://github.com/Montse-gj/ 
+**Olatz González** — https://github.com/olatzglez 
+**Saray Guillen** — https://github.com/saragaby314 
+**Jonathan Vélez** — https://github.com/r3dc0m 
 
 Proyecto Grupal de Backend · Bootcamp Full Stack · 2026
